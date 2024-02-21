@@ -24,8 +24,8 @@ public class MainRenderer extends Renderer {
         triangles = new Triangles();
         Enemy2 enemy2 = new  Enemy2(LoadModel.loadModel(new File(classPath + "/monkey.model"), new Color(250,2,129), camera.renderer, camera),new Vector3(0,0,4), entityHandler);
         entityHandler.entities.add(new Enemy1(LoadModel.loadModel(
-                new File(classPath + "/torus.model"), new Color(0, 0, 0), camera.renderer, camera),
-                new Vector3(22,0,0), entityHandler));//model, położenie, entityHandler
+                new File(classPath + "/tunel1.model"), new Color(223, 81, 227), camera.renderer, camera),
+                new Vector3(0,0,30), entityHandler));//model, położenie, entityHandler
         entityHandler.entities.add(enemy2);
 
         for (int i = 0; i < entityHandler.entities.size(); i++) {

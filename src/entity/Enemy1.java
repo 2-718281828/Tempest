@@ -10,6 +10,7 @@ import renderer.Model;
                 super(model, position, entityHandler);
                 velocity = new Vector3(0, 0, 0);
                 model.move(position);
+                model.rotate(0,Math.PI/2);
                 model.updateVerticies();
             }
             double t = 0;
