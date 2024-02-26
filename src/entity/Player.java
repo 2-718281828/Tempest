@@ -43,7 +43,7 @@ import java.util.*;
         double s = 0.01;
         int i =0;
         public void logic () {
-            if (t%6==0){
+            if (t%3==0){
             if(keys[2]) {
 
                 if (isClosed1 == true && i == tunelwx1.size() - 1) {
@@ -55,7 +55,7 @@ import java.util.*;
                     position.x= tunelwx1.get(i);
                     position.y= tunelwy1.get(i);
                     position.z=0;
-                    model.rotate(2,2*Math.PI-rotation);
+                    model.rotate(2,(2*Math.PI)-rotation);
                     model.rotate(2,angle1.get(i));
                     model.move(position);
                     model.updateVerticies();
@@ -70,7 +70,7 @@ import java.util.*;
                     position.x= tunelwx1.get(i);
                     position.y= tunelwy1.get(i);
                     position.z=0;
-                    model.rotate(2,2*Math.PI-rotation);
+                    model.rotate(2,(2*Math.PI)-rotation);
                     model.rotate(2,angle1.get(i));
                     model.move(position);
                     model.updateVerticies();
@@ -80,10 +80,14 @@ import java.util.*;
             else if(keys[3]){
                 if (isClosed1==true && i==0){
                     i=tunelwx1.size()-1;
-                    position.x-=tunelwx1.get(i);
-                    position.y-=tunelwy1.get(i);
+                    position.x*=-1;
+                    position.y*=-1;
                     position.z=0;
-                    model.rotate(2,2*Math.PI-rotation);
+                    model.move(position);
+                    position.x= tunelwx1.get(i);
+                    position.y= tunelwy1.get(i);
+                    position.z=0;
+                    model.rotate(2,(2*Math.PI)-rotation);
                     model.rotate(2,angle1.get(i));
                     model.move(position);
                     model.updateVerticies();
@@ -92,10 +96,14 @@ import java.util.*;
                 }
                 else if (i!=0){
                     i--;
-                    position.x-=tunelwx1.get(i);
-                    position.y-=tunelwy1.get(i);
+                    position.x*=-1;
+                    position.y*=-1;
                     position.z=0;
-                    model.rotate(2,2*Math.PI-rotation);
+                    model.move(position);
+                    position.x= tunelwx1.get(i);
+                    position.y= tunelwy1.get(i);
+                    position.z=0;
+                    model.rotate(2,(2*Math.PI)-rotation);
                     model.rotate(2,angle1.get(i));
                     model.move(position);
                     model.updateVerticies();
