@@ -1,6 +1,6 @@
 package src.main;
-import src.entity.Enemy1;
-import src.entity.Enemy2;
+import src.entity.Rectangle;
+import src.entity.Player;
 import engine.*;
 import entity.*;
 import maths.Vector3;
@@ -11,7 +11,7 @@ import java.io.File;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import static java.awt.Color.pink;
-import static src.entity.ID.Enemy1;
+import static src.entity.ID.Rectangle;
 
 public class MainLogic implements Logic {
 

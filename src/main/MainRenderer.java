@@ -3,41 +3,51 @@ package src.main;
 import entity.EntityHandler;
 import maths.*;
 import renderer.*;
-import src.entity.Enemy1;
-import src.entity.Enemy2;
+import src.entity.Rectangle;
+import src.entity.Player;
 
+import java.util.*;
 
 import java.awt.*;
 import java.io.File;
-
-
 
 public class MainRenderer extends Renderer {
 
     public Triangles triangles;
     public Model model;
+
+
     public EntityHandler entityHandler = new EntityHandler();
     String classPath = getClass().getResource("").getPath(); // żebyśmy nie musieli tego pisać za każdym razem
-
+    public ArrayList<Double> tunelwx = new ArrayList<Double>();
+    public ArrayList<Double> tunelwy = new ArrayList<Double>();
+    public ArrayList<Double> angle_ = new ArrayList<Double>();
     public MainRenderer(Vector2 vector2, Camera camera) {
         super(vector2, camera);
         triangles = new Triangles();
 
-        Enemy2 enemy2 = new  Enemy2(LoadModel.loadModel(new File(classPath + "/monkey.model"), new Color(0, 0, 0), camera.renderer, camera),new Vector3(0,0,4), entityHandler);
         double N = 14;
+        boolean isClosed=true;
         for(double i=0;i<N;i++){
-            entityHandler.entities.add(new Enemy1(LoadModel.loadModel(
+            entityHandler.entities.add(new Rectangle(LoadModel.loadModel(
                 new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
                 new Vector3(0,0,10), entityHandler,2*Math.PI*(i/N), N));//model, położenie, entityHandler
+            tunelwx.add(Math.cos(2*Math.PI*(i/N))/(2*Math.tan(Math.PI/(N))));
+            tunelwy.add(Math.sin(2*Math.PI*(i/N))/(2*Math.tan(Math.PI/(N))));
+            angle_.add(2*Math.PI*(i/N));
+
         }
-        //entityHandler.entities.add(enemy2);
+        isClosed=true;
+        Player player = new  Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera),new Vector3(0,0,4), entityHandler,tunelwx,tunelwy,angle_,isClosed);
+
+        entityHandler.entities.add(player);
 
         for (int i = 0; i < entityHandler.entities.size(); i++) {
-            entityHandler.entities.get(i).model.init(((src.main.MainRenderer)camera.renderer).triangles);
+            entityHandler.entities.get(i).model.init(((src. main.MainRenderer)camera.renderer).triangles);
         }
-        KeyHandler keyHandler1 = new KeyHandler(enemy2);
+        KeyHandler keyHandler1 = new KeyHandler(player);
         addKeyListener(keyHandler1);
-        enemy2.model.init(triangles);
+        player.model.init(triangles);
 //        enemy1.model.init(triangles);
     }
 

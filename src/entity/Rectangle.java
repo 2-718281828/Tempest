@@ -6,16 +6,17 @@ import maths.Vector3;
 import renderer.Model;
 import util.Console;
 
-public class Enemy1 extends Entity {
-            public ID id = ID.Enemy1;
-            public Enemy1(Model model, Vector3 position, EntityHandler entityHandler, double angle, double N){
+public class Rectangle extends Entity {
+            public ID id = ID.Rectangle;
+            public Rectangle(Model model, Vector3 position, EntityHandler entityHandler, double angle, double N){
                 super(model, position, entityHandler);
                 velocity = new Vector3(0, 0, 0);
                 model.move(position);
                 //Vector3 axis = new Vector3(position.x,position.y+1/(N*Math.tan(Math.PI/N)),position.z);
-                model.rotate(2,(angle-Math.PI/2));
+                model.rotate(2,(angle+Math.PI/2));
                 position.x=position.x+(Math.cos(angle)/(2*Math.tan(Math.PI/(N))));
                 position.y=position.y+(Math.sin(angle)/(2*Math.tan(Math.PI/(N))));
+
                 model.move(position);
                 //model.rotate(0,Math.PI/2);
                 model.updateVerticies();

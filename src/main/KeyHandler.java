@@ -1,6 +1,6 @@
 package src.main;
 
-import src.entity.Enemy2;
+import src.entity.Player;
 import util.Console;
 
 import java.awt.event.KeyEvent;
@@ -8,9 +8,9 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    Enemy2 player;
+    Player player;
 
-    public KeyHandler(Enemy2 player){
+    public KeyHandler(Player player){
         Console.log("a");
         this.player = player;
     }
