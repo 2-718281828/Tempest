@@ -16,10 +16,11 @@ public class Main {
     public static void main(String[] args) {
         Locale.setDefault(new Locale("en", "US")); // ustawiamy lokalizację na US, żeby si się floaty ładowały
         Camera camera = new Camera();
-        camera.far = 10000;
+        camera.far = 150;
         Renderer renderer = new src.main.MainRenderer(new Vector2(WIDTH, HEIGHT), camera);
         Window window = new Window(new Vector2(WIDTH, HEIGHT), TITLE, renderer);
-        renderer.addKeyListener(camera); // poruszanie się klawiaturą
+        renderer.addKeyListener(camera);
+        // poruszanie się klawiaturą
         renderer.addMouseMotionListener(camera); // o`  bracanie się myszką
         renderer.requestFocus(); // okno jest przenoszone w systemie na pierwsze tło (ważne)
         //camera.enableRotationPitch = false; // obracanie się wokół osi x (góra - dół)
@@ -27,7 +28,9 @@ public class Main {
         //camera.enableMovement = false; // poruszanie się kamerą
 
         src.main.MainLogic mainLogic = new src.main.MainLogic(camera); // atutaj 60 razy na sekundę jest wykonywana logika
+
         Engine engine = new Engine(renderer, mainLogic); // tutaj jest pętla gry
         engine.start(); // uruchamiamy silnik
+
     }
 }

@@ -10,7 +10,7 @@ import src.entity.Enemy2;
 import java.awt.*;
 import java.io.File;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
+
 
 public class MainRenderer extends Renderer {
 
@@ -22,11 +22,15 @@ public class MainRenderer extends Renderer {
     public MainRenderer(Vector2 vector2, Camera camera) {
         super(vector2, camera);
         triangles = new Triangles();
-        Enemy2 enemy2 = new  Enemy2(LoadModel.loadModel(new File(classPath + "/monkey.model"), new Color(250,2,129), camera.renderer, camera),new Vector3(0,0,4), entityHandler);
-        entityHandler.entities.add(new Enemy1(LoadModel.loadModel(
-                new File(classPath + "/tunel1.model"), new Color(223, 81, 227), camera.renderer, camera),
-                new Vector3(0,0,30), entityHandler));//model, położenie, entityHandler
-        entityHandler.entities.add(enemy2);
+
+        Enemy2 enemy2 = new  Enemy2(LoadModel.loadModel(new File(classPath + "/monkey.model"), new Color(0, 0, 0), camera.renderer, camera),new Vector3(0,0,4), entityHandler);
+        double N = 14;
+        for(double i=0;i<N;i++){
+            entityHandler.entities.add(new Enemy1(LoadModel.loadModel(
+                new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                new Vector3(0,0,10), entityHandler,2*Math.PI*(i/N), N));//model, położenie, entityHandler
+        }
+        //entityHandler.entities.add(enemy2);
 
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             entityHandler.entities.get(i).model.init(((src.main.MainRenderer)camera.renderer).triangles);
