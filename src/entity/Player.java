@@ -111,7 +111,10 @@ public class Player extends Entity {
                 }
             }}
             t++;
+            if(isNewTunel){
+                model.rotate(2,2*Math.PI-angle_.get(i)-Math.PI/2);
 
+            }
         }
     }
 
