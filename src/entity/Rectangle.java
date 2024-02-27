@@ -4,12 +4,18 @@ import entity.Entity;
 import entity.EntityHandler;
 import maths.Vector3;
 import renderer.Model;
+import src.main.MainRenderer;
 import util.Console;
+
+import static src.main.MainRenderer.isNewTunel;
 
 public class Rectangle extends Entity {
             public ID id = ID.Rectangle;
-            public Rectangle(Model model, Vector3 position, EntityHandler entityHandler, double angle, double N){
+            MainRenderer renderer;
+
+            public Rectangle(Model model, Vector3 position, EntityHandler entityHandler, double angle, double N, MainRenderer renderer){
                 super(model, position, entityHandler);
+                this.renderer = renderer;
                 velocity = new Vector3(0, 0, 0);
                 model.move(position);
                 //Vector3 axis = new Vector3(position.x,position.y+1/(N*Math.tan(Math.PI/N)),position.z);
@@ -28,7 +34,14 @@ public class Rectangle extends Entity {
                 /*/velocity.x =((Math.sin(t))/5)*(-1);
                  position.add(velocity);
                 model.move(velocity);/*/
-                t = t+0.01;
+                t++;
+                if(t%1500==0){
+                    isNewTunel =true;
+                }
+                if (isNewTunel){
+                    model.remove(renderer.triangles);
+                    entityHandler.entities.remove(this);
+                }
                 //position.x(2222);
                 //t-=0.0000002137;
             //while(t>2) {

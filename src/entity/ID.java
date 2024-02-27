@@ -1,5 +1,5 @@
 package src.entity;
 
 public enum ID {
-    Rectangle, Player
+    Rectangle, Player, Bullet1
 }

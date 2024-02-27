@@ -22,10 +22,10 @@ public class KeyHandler implements KeyListener {
 
 
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_UP) {
+        if(e.getKeyCode()==KeyEvent.VK_SPACE) {
             player.keys[0] = true;
         }
-        if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+        if(e.getKeyCode()==KeyEvent.VK_X) {
             player.keys[1] = true;
         }
         if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
@@ -38,10 +38,10 @@ public class KeyHandler implements KeyListener {
 
 
     public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode()==KeyEvent.VK_UP) {
+        if(e.getKeyCode()==KeyEvent.VK_SPACE) {
             player.keys[0] = false;
         }
-        if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+        if(e.getKeyCode()==KeyEvent.VK_X) {
             player.keys[1] = false;
         }
         if(e.getKeyCode()==KeyEvent.VK_RIGHT) {

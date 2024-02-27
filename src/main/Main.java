@@ -1,6 +1,7 @@
 package src.main;
 
 import engine.Engine;
+import entity.EntityHandler;
 import maths.*;
 import renderer.*;
 import util.Console;
@@ -23,10 +24,10 @@ public class Main {
         // poruszanie się klawiaturą
         renderer.addMouseMotionListener(camera); // o`  bracanie się myszką
         renderer.requestFocus(); // okno jest przenoszone w systemie na pierwsze tło (ważne)
-        //camera.enableRotationPitch = false; // obracanie się wokół osi x (góra - dół)
-        //camera.enableRotationYaw = false; // obracanie się wokół osi y (prawo - lewo)
-        //camera.enableMovement = false; // poruszanie się kamerą
-        src.main.MainLogic mainLogic = new src.main.MainLogic(camera); // atutaj 60 razy na sekundę jest wykonywana logika
+        camera.enableRotationPitch = false; // obracanie się wokół osi x (góra - dół)
+        camera.enableRotationYaw = false; // obracanie się wokół osi y (prawo - lewo)
+        camera.enableMovement = false; // poruszanie się kamerą
+        src.main.MainLogic mainLogic = new src.main.MainLogic(camera, ((MainRenderer)renderer).entityHandler); // atutaj 60 razy na sekundę jest wykonywana logika
 
         Engine engine = new Engine(renderer, mainLogic); // tutaj jest pętla gry
         engine.start(); // uruchamiamy silnik

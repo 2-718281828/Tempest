@@ -12,33 +12,35 @@ import java.awt.*;
 import java.io.File;
 
 public class MainRenderer extends Renderer {
-
+    public static boolean isClosed1;
+    public static boolean isNewTunel = false;
     public Triangles triangles;
     public Model model;
 
 
     public EntityHandler entityHandler = new EntityHandler();
     String classPath = getClass().getResource("").getPath(); // żebyśmy nie musieli tego pisać za każdym razem
-    public ArrayList<Double> tunelwx = new ArrayList<Double>();
-    public ArrayList<Double> tunelwy = new ArrayList<Double>();
-    public ArrayList<Double> angle_ = new ArrayList<Double>();
+    public static  ArrayList<Double> tunelwx = new ArrayList<Double>();
+    public static  ArrayList<Double> tunelwy = new ArrayList<Double>();
+    public static ArrayList<Double> angle_ = new ArrayList<Double>();
     public MainRenderer(Vector2 vector2, Camera camera) {
         super(vector2, camera);
         triangles = new Triangles();
 
         double N = 14;
-        boolean isClosed=true;
+        //boolean isClosed1=true;
         for(double i=0;i<N;i++){
             entityHandler.entities.add(new Rectangle(LoadModel.loadModel(
                 new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                new Vector3(0,0,10), entityHandler,2*Math.PI*(i/N), N));//model, położenie, entityHandler
+                new Vector3(0,0,10), entityHandler,2*Math.PI*(i/N), N,this));//model, położenie, entityHandler
             tunelwx.add(Math.cos(2*Math.PI*(i/N))/(2*Math.tan(Math.PI/(N))));
             tunelwy.add(Math.sin(2*Math.PI*(i/N))/(2*Math.tan(Math.PI/(N))));
             angle_.add(2*Math.PI*(i/N));
 
         }
-        isClosed=true;
-        Player player = new  Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera),new Vector3(0,0,4), entityHandler,tunelwx,tunelwy,angle_,isClosed);
+        isClosed1=true;
+        Player player = new  Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera),new Vector3(0,0,4), entityHandler);
+        
 
         entityHandler.entities.add(player);
 
