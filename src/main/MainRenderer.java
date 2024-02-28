@@ -29,8 +29,8 @@ public class MainRenderer extends Renderer {
         triangles = new Triangles();
 
 
-        for (int i = 0; i < entityHandler.entities.size(); i++) {
-            entityHandler.entities.get(i).model.init(((src. main.MainRenderer)camera.renderer).triangles);
+        for (int f = 0; f < entityHandler.entities.size(); f++) {
+            entityHandler.entities.get(f).model.init(((src. main.MainRenderer)camera.renderer).triangles);
         }
 //        enemy1.model.init(triangles);
     }

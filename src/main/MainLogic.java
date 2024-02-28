@@ -41,19 +41,16 @@ public class MainLogic implements Logic {
             tunelwx.add(Math.cos(2*Math.PI*(i/N))/(2*Math.tan(Math.PI/(N))));
             tunelwy.add(Math.sin(2*Math.PI*(i/N))/(2*Math.tan(Math.PI/(N))));
             angle_.add(2*Math.PI*(i/N));}
-        Player player = new  Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera),new Vector3(0,0,4), entityHandler);
 
-
-        entityHandler.entities.add(player);
-        //czuje sie jak tau neutrino, albo benzen. benzen.
-        KeyHandler keyHandler1 = new KeyHandler(player);
-        camera.renderer.addKeyListener(keyHandler1);
-
-        //triangles = new Triangles();
-        player.model.init(src.main.MainRenderer.triangles);
 
     }
     public double t=0;
+    public int ifl =0; //ilosc flippers
+    public int it=0;
+    public int is=0; //ilsoc spikers
+    public int ifu=0; //ilsoc fuseballs
+    public int level=0;
+
     public void update() {
         if (whichTunel == 16) {
             whichTunel = 0; //16 tuneli
@@ -69,24 +66,22 @@ public class MainLogic implements Logic {
         camera.update();
         ((MainRenderer) camera.renderer).entityHandler.logic();
         if (isNewTunel) {
+            tunelwx.clear();
+            tunelwy.clear();
+            angle_.clear();
+            level++;
+            enemyCount= (int) Math.round(10*Math.exp(level/69));
             if (whichTunel == 0) {
                 double N = 14;
                 //boolean isClosed1=true;
-                for (double i = 0; i < N; i++) {
-                    if (i == 0) {
-                        tunelwx.clear();
-                        tunelwy.clear();
-                        angle_.clear();
-
-                    }
-
-                    tunelwx.add(Math.cos(2 * Math.PI * (i / N)) / (2 * Math.tan(Math.PI / (N))));
-                    tunelwy.add(Math.sin(2 * Math.PI * (i / N)) / (2 * Math.tan(Math.PI / (N))));
-                    angle_.add(2 * Math.PI * (i / N));
+                for (double d = 0; d < N; d++) {
+                    tunelwx.add(Math.cos(2 * Math.PI * (d / N)) / (2 * Math.tan(Math.PI / (N))));
+                    tunelwy.add(Math.sin(2 * Math.PI * (d / N)) / (2 * Math.tan(Math.PI / (N))));
+                    angle_.add(2 * Math.PI * (d / N));
 
                     Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                             new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                            new Vector3(Math.cos(2 * Math.PI * (i / N)) / (2 * Math.tan(Math.PI / (N))), Math.sin(2 * Math.PI * (i / N)) / (2 * Math.tan(Math.PI / (N))), 30), entityHandler, 2 * Math.PI * (i / N), N, (MainRenderer) camera.renderer));//model, położenie, entityHandler
+                            new Vector3(Math.cos(2 * Math.PI * (d / N)) / (2 * Math.tan(Math.PI / (N))), Math.sin(2 * Math.PI * (d / N)) / (2 * Math.tan(Math.PI / (N))), 30), entityHandler, 2 * Math.PI * (d / N), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
                     entityHandler.entities.add(rectangle);
                     rectangle.model.init(((MainRenderer) camera.renderer).triangles);
                     //Console.log("SEX");
@@ -94,43 +89,100 @@ public class MainLogic implements Logic {
                 }
 
                 isClosed1 = true;
-                enemyCount++;
-                whichTunel++;
+                //enemyCount++;
+                //whichTunel++;
             }
 
 
              else if (whichTunel == 1) {
                 double N = 10;
                 //boolean isClosed1=true;
-                for (double i = 0; i < N; i++) {
-                    if (i == 0) {
-                        tunelwx.clear();
-                        tunelwy.clear();
-                        angle_.clear();
-
-                    }
-
-                    tunelwx.add(-2.25+0.5*i);
-                    tunelwy.add(0.0);
-                    angle_.add(0.0);
+                for (double d = 0; d < N; d++) {
+                    tunelwx.add(-5+1*d);
+                    tunelwy.add(-2.0);
+                    angle_.add(Math.PI/2);
 
                     Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                             new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                            new Vector3(-2.25+0.5*i, 0, 30), entityHandler, Math.PI/2, N, (MainRenderer) camera.renderer));//model, położenie, entityHandler
+                            new Vector3(-5+1*d, -2, 30), entityHandler, Math.PI/2, N,((MainRenderer) camera.renderer)));//model, położenie, entityHandler
                     entityHandler.entities.add(rectangle);
                     rectangle.model.init(((MainRenderer) camera.renderer).triangles);
-                    //Console.log("SEX");
-                    //Console.log(angle_); sam juz nie rozumiem jak to działa ale działą czyli jest git,szkoda ze jako jedyny pisze (subiektywnie) najtrudniejsza gre 2 dni przed dedlinem >_< (23:38 27.02.2024)
+
                 }
 
                 isClosed1 = false;
-                enemyCount++;
-                whichTunel++;
+
 
             }
+            else if (whichTunel == 2) {
+                double N = 8;
+                //boolean isClosed1=true;
+                for (double d = 0; d < N; d++) {
+                    tunelwx.add((-3 + d / Math.sqrt(2))/*1/Math.sin(Math.PI/4)*/);
+                    tunelwy.add(-2.0 + 1 / Math.cos(Math.PI / 4));
+                    angle_.add(Math.PI * Math.pow((-1), d) / 4);
+
+                    Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
+                            new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                            new Vector3((((-3 + d / Math.sqrt(2)))), -2.0 + 1 / Math.cos(Math.PI / 4), 30), entityHandler, Math.PI * Math.pow((-1), d) / 4, N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                    entityHandler.entities.add(rectangle);
+                    rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                }
+                    isClosed1=false;
+                }
+                 else if (whichTunel == 3){
+                    double N =16;
+                    //boolean isClosed1=true;
+                    for (double d = 0; d < N; d++) {
+
+                        for(int q=0;q<N;q++) {
+                            Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
+                                    new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                                    new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+
+                            entityHandler.entities.add(rectangle);
+                            rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                        }
+                        isClosed1=true;
+                    }
+                 }
+
+            //isClosed1 = false;
+                //enemyCount++;
+                whichTunel++;
+            Player player = new  Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera),new Vector3(0,0,4), entityHandler,((MainRenderer) camera.renderer));
+
+
+            entityHandler.entities.add(player);
+
+            //czuje sie jak tau neutrino, albo benzen. benzen.
+            KeyHandler keyHandler1 = new KeyHandler(player);
+            camera.renderer.addKeyListener(keyHandler1);
+
+            //triangles = new Triangles();
+            player.model.init(src.main.MainRenderer.triangles);
             isNewTunel=false;
+            if (level<3){
+                ifl=enemyCount;
+            }
+            else if(level <5){
+                ifl =Math.round(4/5 *enemyCount);
+                it=enemyCount-ifl;
+            }
+            else if(level <7){
+                ifl = Math.round(2/3*enemyCount);
+                it=Math.round(1/4*enemyCount);
+                is=enemyCount-ifl-it;
+
+            }
+            else if(level<9){
+                ifl = Math.round(1/2*enemyCount);
+                it = Math.round(1/6*enemyCount);
+                is=Math.round(1/6*enemyCount);
+                ifu=enemyCount-ifl-it-is;
+            }
+            }
+
         }
 
     }
-
-}
