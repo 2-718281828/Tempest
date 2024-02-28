@@ -65,7 +65,7 @@ public class MainLogic implements Logic {
         t++;
         if (t % 2 == 0) {
             if (Player.keys[0]) {
-                Bullet1 bullet1 = new Bullet1(LoadModel.loadModel(new File(classPath + "/square.model"), Color.red, camera.renderer, camera), new Vector3(tunelwx.get(i), tunelwy.get(i), 10), entityHandler, ((MainRenderer) camera.renderer));//model, położenie, entityHandler
+                Bullet1 bullet1 = new Bullet1(LoadModel.loadModel(new File(classPath + "/monkey.model"), Color.red, camera.renderer, camera), new Vector3(tunelwx.get(i), tunelwy.get(i), 10), entityHandler, ((MainRenderer) camera.renderer));//model, położenie, entityHandler
                 entityHandler.entities.add(bullet1);
                 bullet1.model.init(((MainRenderer) camera.renderer).triangles);
             }
@@ -78,6 +78,7 @@ public class MainLogic implements Logic {
             tunelwy.clear();
             angle_.clear();
             level++;
+            //enemyCount=1;
             enemyCount = (int) Math.round(16 * Math.exp(level / 69));
             if (whichTunel == 0) {
                 double N = 14;
@@ -196,7 +197,7 @@ public class MainLogic implements Logic {
         if (oifl < ifl && random.nextInt(120) == 99) {
             oifl++;
             int s =random.nextInt(M);
-            Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s));//model, położenie, entityHandler
+            Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s),s,((MainRenderer) camera.renderer));//model, położenie, entityHandler
             entityHandler.entities.add(flipper);
             flipper.model.init(((MainRenderer) camera.renderer).triangles);
         }
