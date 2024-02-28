@@ -43,13 +43,13 @@ public class Rectangle extends Entity {
                 model.move(velocity);/*/
                 t++;
 
-                if(t>240){
+                /*if(t>240){
 
                     if(t%100==0){
                         model.scale(2,-0.7);}
                     if(t>3000){
                     enemyCount=0;}
-                }
+                }*/
                 if(enemyCount==0){
                     iloscrectangli--;
                     entityHandler.entities.remove(this);
