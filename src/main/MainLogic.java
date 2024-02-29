@@ -48,7 +48,7 @@ public class MainLogic implements Logic {
     }
 
     public double t = 0;
-    public int timeFlippers=69;
+    public int timeFlippers = 69;
     public int ifl = 0; //ilosc flippers
     public int it = 0;
     public int is = 0; //ilsoc spikers
@@ -60,10 +60,11 @@ public class MainLogic implements Logic {
     public int oifu = 0;
     public int M;
 
-    static double d135 = 3*(Math.PI/4);
-    static double d90 = Math.PI/2;
-    static double d45 = Math.PI/4;
+    static double d135 = 3 * (Math.PI / 4);
+    static double d90 = Math.PI / 2;
+    static double d45 = Math.PI / 4;
     static double d0 = 0.0;
+
     public void update() {
         if (whichTunel == 16) {
             whichTunel = 0; //16 tuneli
@@ -86,10 +87,9 @@ public class MainLogic implements Logic {
             level++;
             //enemyCount=1;
             enemyCount = (int) Math.round(16 * Math.exp(level / 69));
-            if (whichTunel ==0)
-            {
+            if (whichTunel == 0) {
                 double N = 14;
-                M= (int) N;
+                M = (int) N;
                 //boolean isClosed1=true;
                 for (double d = 0; d < N; d++) {
                     tunelwx.add(Math.cos(2 * Math.PI * (d / N)) / (2 * Math.tan(Math.PI / (N))));
@@ -111,7 +111,7 @@ public class MainLogic implements Logic {
                 //whichTunel++;
             } else if (whichTunel == 1) {
                 double N = 10;
-                M= (int)N;
+                M = (int) N;
                 //boolean isClosed1=true;
                 for (double d = 0; d < N; d++) {
                     tunelwx.add(-5 + 1 * d);
@@ -131,16 +131,16 @@ public class MainLogic implements Logic {
 
             } else if (whichTunel == 2) {
                 double N = 14;
-                M= (int)N;
+                M = (int) N;
                 //boolean isClosed1=true;
                 for (double d = 0; d < N; d++) {
-                    tunelwx.add((-7/Math.sqrt(2)+ d / Math.sqrt(2))/*1/Math.sin(Math.PI/4)*/);
+                    tunelwx.add((-7 / Math.sqrt(2) + d / Math.sqrt(2))/*1/Math.sin(Math.PI/4)*/);
                     tunelwy.add(-2.0 + 1 / Math.cos(Math.PI / 4));
                     angle_.add(Math.PI * Math.pow((-1), d) / 4);
 
                     Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                             new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                            new Vector3((((-7/Math.sqrt(2) + d / Math.sqrt(2)))), -2.0 + 1 / Math.cos(Math.PI / 4), 30), entityHandler, Math.PI * Math.pow((-1), d) / 4, N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                            new Vector3((((-7 / Math.sqrt(2) + d / Math.sqrt(2)))), -2.0 + 1 / Math.cos(Math.PI / 4), 30), entityHandler, Math.PI * Math.pow((-1), d) / 4, N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
                     entityHandler.entities.add(rectangle);
                     rectangle.model.init(((MainRenderer) camera.renderer).triangles);
                 }
@@ -148,11 +148,11 @@ public class MainLogic implements Logic {
             } else if (whichTunel == 3) //Trzeci tunel
             {
                 double N = 16;
-                M= (int)N;
+                M = (int) N;
                 //1
                 tunelwx.add(0.5);
                 tunelwy.add(1.0);
-                angle_.add(Math.PI/2.0);
+                angle_.add(Math.PI / 2.0);
                 //2
                 tunelwx.add(1.0);
                 tunelwy.add(0.5);
@@ -160,7 +160,7 @@ public class MainLogic implements Logic {
                 //3
                 tunelwx.add(1.5);
                 tunelwy.add(0.0);
-                angle_.add(Math.PI/2.0);
+                angle_.add(Math.PI / 2.0);
                 //4
                 tunelwx.add(2.0);
                 tunelwy.add(-0.5);
@@ -172,7 +172,7 @@ public class MainLogic implements Logic {
                 //6
                 tunelwx.add(1.5);
                 tunelwy.add(-2.0);
-                angle_.add(Math.PI/2.0);
+                angle_.add(Math.PI / 2.0);
                 //7
                 tunelwx.add(1.0);
                 tunelwy.add(-2.5);
@@ -180,11 +180,11 @@ public class MainLogic implements Logic {
                 //8
                 tunelwx.add(0.5);
                 tunelwy.add(-3.0);
-                angle_.add(Math.PI/2.0);
+                angle_.add(Math.PI / 2.0);
                 //9
                 tunelwx.add(-0.5);
                 tunelwy.add(-3.0);
-                angle_.add(Math.PI/2.0);
+                angle_.add(Math.PI / 2.0);
                 //10
                 tunelwx.add(-1.0);
                 tunelwy.add(-2.5);
@@ -192,7 +192,7 @@ public class MainLogic implements Logic {
                 //11
                 tunelwx.add(-1.5);
                 tunelwy.add(-2.0);
-                angle_.add(Math.PI/2.0);
+                angle_.add(Math.PI / 2.0);
                 //12
                 tunelwx.add(-2.0);
                 tunelwy.add(-1.5);
@@ -204,7 +204,7 @@ public class MainLogic implements Logic {
                 //14
                 tunelwx.add(-1.5);
                 tunelwy.add(0.0);
-                angle_.add(Math.PI/2.0);
+                angle_.add(Math.PI / 2.0);
                 //15
                 tunelwx.add(-1.0);
                 tunelwy.add(0.5);
@@ -212,7 +212,7 @@ public class MainLogic implements Logic {
                 //16
                 tunelwx.add(-0.5);
                 tunelwy.add(1.0);
-                angle_.add(Math.PI/2.0);
+                angle_.add(Math.PI / 2.0);
 
                 for (double d = 0; d < N; d++) {
 
@@ -226,16 +226,14 @@ public class MainLogic implements Logic {
                     }
                     isClosed1 = true;
                 }
-            }
-            else if (whichTunel == 4) //Czwarty tunel
+            } else if (whichTunel == 4) //Czwarty tunel
             {
                 double N = 20;
-                M= (int)N;
-                double[] x = {0.0,0.5,1.0,1.5,2.0,2.5,2.0,1.5,1.0,0.5,0.0,-0.5,-1,-1.5,-2.0,-2.5,-2,-1.5,-1,-0.5};
-                double[] y = {0.5,1.0,1.5,1.0,0.5,0.0,-0.5,-1.0,-1.5,-1.0,-0.5,-1.0,-1.5,-1.0,-0.5,0.0,0.5,1.0,1.5,1.0};
-                double[] angle = {d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0};
-                for(int l = 0; l<N; l++)
-                {
+                M = (int) N;
+                double[] x = {0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0.0, -0.5, -1, -1.5, -2.0, -2.5, -2, -1.5, -1, -0.5};
+                double[] y = {0.5, 1.0, 1.5, 1.0, 0.5, 0.0, -0.5, -1.0, -1.5, -1.0, -0.5, -1.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 1.0};
+                double[] angle = {d90, d0, d90, d0, d90, d0, d90, d0, d90, d0, d90, d0, d90, d0, d90, d0, d90, d0, d90, d0};
+                for (int l = 0; l < N; l++) {
                     tunelwx.add(x[l]);
                     tunelwy.add(y[l]);
                     angle_.add(angle[l]);
@@ -252,16 +250,14 @@ public class MainLogic implements Logic {
                     }
                     isClosed1 = true;
                 }
-            }
-            else if (whichTunel == 5) //Piąty tunel
+            } else if (whichTunel == 5) //Piąty tunel
             {
                 double N = 18;
-                M= (int)N;
-                double[] x = {0.5,1.5,2.5,3.5,4.0,3.5,2.5,1.5,0.5,-0.5,-1.5,-2.5,-3.5,-4.0,-3.5,-2.5,-1.5,-0.5};
-                double[] y = {1.0,1.5,1.5,1.0,0.0,-1.0,-1.5,-1.5,-1.0,-1.0,-1.5,-1.5,-1.0,-0.0,1.0,1.5,1.5,1.0};
-                double[] angle = {d135,d90,d90,d45,d0,d135,d90,d90,d45,d135,d90,d90,d45,d0,d135,d90,d90,d45};
-                for(int l = 0; l<N; l++)
-                {
+                M = (int) N;
+                double[] x = {0.5, 1.5, 2.5, 3.5, 4.0, 3.5, 2.5, 1.5, 0.5, -0.5, -1.5, -2.5, -3.5, -4.0, -3.5, -2.5, -1.5, -0.5};
+                double[] y = {1.0, 1.5, 1.5, 1.0, 0.0, -1.0, -1.5, -1.5, -1.0, -1.0, -1.5, -1.5, -1.0, -0.0, 1.0, 1.5, 1.5, 1.0};
+                double[] angle = {d135, d90, d90, d45, d0, d135, d90, d90, d45, d135, d90, d90, d45, d0, d135, d90, d90, d45};
+                for (int l = 0; l < N; l++) {
                     tunelwx.add(x[l]);
                     tunelwy.add(y[l]);
                     angle_.add(angle[l]);
@@ -278,17 +274,14 @@ public class MainLogic implements Logic {
                     }
                     isClosed1 = true;
                 }
-            }
-
-            else if (whichTunel == 6) //Szósty tunel
+            } else if (whichTunel == 6) //Szósty tunel
             {
                 double N = 18;
-                M= (int)N;
-                double[] x = {0.5,1.5,2.5,3.5,4.0,3.5,2.5,1.5,0.5,-0.5,-1.5,-2.5,-3.5,-4.0,-3.5,-2.5,-1.5,-0.5};
-                double[] y = {1.5,1.5,1.5,1.0,0.0,-1.0,-1.5,-1.5,-1.5,-1.5,-1.5,-1.5,-1.0,-0.0,1.0,1.5,1.5,1.5};
-                double[] angle = {d90,d90,d90,d45,d0,d135,d90,d90,d90,d90,d90,d90,d45,d0,d135,d90,d90,d90};
-                for(int l = 0; l<N; l++)
-                {
+                M = (int) N;
+                double[] x = {0.5, 1.5, 2.5, 3.5, 4.0, 3.5, 2.5, 1.5, 0.5, -0.5, -1.5, -2.5, -3.5, -4.0, -3.5, -2.5, -1.5, -0.5};
+                double[] y = {1.5, 1.5, 1.5, 1.0, 0.0, -1.0, -1.5, -1.5, -1.5, -1.5, -1.5, -1.5, -1.0, 0.0, 1.0, 1.5, 1.5, 1.5};
+                double[] angle = {d90, d90, d90, d45, d0, d135, d90, d90, d90, d90, d90, d90, d45, d0, d135, d90, d90, d90};
+                for (int l = 0; l < N; l++) {
                     tunelwx.add(x[l]);
                     tunelwy.add(y[l]);
                     angle_.add(angle[l]);
@@ -305,11 +298,94 @@ public class MainLogic implements Logic {
                     }
                     isClosed1 = true;
                 }
+            } else if (whichTunel == 7) {
+                double N = 6;
+                M = (int) N;
+                double[] x = { -1.775, -1.065,-0.355, 0.355, 1.065, 1.775};
+                double[] y = {0.71, -0.0, -0.71, -0.71, -0.0, 0.71};
+                double[] angle = {d45, d45, d45,d135, d135, d135};
+                for (int l = 0; l < N; l++) {
+                    tunelwx.add(x[l]);
+                    tunelwy.add(y[l]);
+                    angle_.add(angle[l]);
+                }
+                for (double d = 0; d < N; d++) {
+
+                    for (int q = 0; q < N; q++) {
+                        Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
+                                new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+
+                        entityHandler.entities.add(rectangle);
+                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                    }
+                    isClosed1 = false;
+                }
+            } else if (whichTunel == 8) {
+                double N = 6;
+                M = (int) N;
+                double[] x = {-1.775, -1.065,-0.355, 0.355, 1.065, 1.775};
+                double[] y = {-0.71, -0.0, 0.71, 0.71, -0.0, -0.71};
+                double[] angle = {d135, d135, d135,d45, d45, d45};
+                for (int l = 0; l < N; l++) {
+                    tunelwx.add(x[l]);
+                    tunelwy.add(y[l]);
+                    angle_.add(angle[l]);
+                }
+                for (double d = 0; d < N; d++) {
+
+                    for (int q = 0; q < N; q++) {
+                        Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
+                                new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+
+                        entityHandler.entities.add(rectangle);
+                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                    }
+                    isClosed1 = false;
+                }
+
+
+            } else if (whichTunel == 9) {
+                double N = 6;
+                M = (int) N;
+                double[] x = {0.355, 0.71, 1.065, -0.355, -0.71, -1.065};
+                double[] y = {-0.71, -0.0, 0.71, -0.71, -0.0, 0.71};
+                double[] angle = {d45, d45, d45, d45, d45, d45,};
+                for (int l = 0; l < N; l++) {
+                    tunelwx.add(x[l]);
+                    tunelwy.add(y[l]);
+                    angle_.add(angle[l]);
+                }
+                for (double d = 0; d < N; d++) {
+
+                    for (int q = 0; q < N; q++) {
+                        Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
+                                new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+
+                        entityHandler.entities.add(rectangle);
+                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                    }
+                    isClosed1 = false;
+                }
+
+
+
+
             }
-            //isClosed1 = false;
-            //enemyCount++;
+
+            timeFlippers--;
+            if (oifl < ifl && timeFlippers == 0) {
+                timeFlippers = 69 - random.nextInt(30);
+                oifl++;
+                int s = random.nextInt(M);
+                Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s), s, ((MainRenderer) camera.renderer));//model, położenie, entityHandler
+                entityHandler.entities.add(flipper);
+                flipper.model.init(((MainRenderer) camera.renderer).triangles);
+            }
             whichTunel++;
-            Player player = new Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera), new Vector3(0, 0, 4), entityHandler, ((MainRenderer) camera.renderer),camera);
+            Player player = new Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera), new Vector3(0, 0, 4), entityHandler, ((MainRenderer) camera.renderer), camera);
 
 
             entityHandler.entities.add(player);
@@ -323,37 +399,26 @@ public class MainLogic implements Logic {
             isNewTunel = false;
             if (level <= 2) {
                 ifl = (int) enemyCount;
-            } else if (level <= 4 && level>=2) {
+            } else if (level <= 4 && level >= 2) {
                 Console.log("sex");
-                ifl =(int) Math.round(0.8* enemyCount);
-                it = (int)enemyCount - ifl;
-            } else if (level <= 6&&level>=4){
+                ifl = (int) Math.round(0.8 * enemyCount);
+                it = (int) enemyCount - ifl;
+            } else if (level <= 6 && level >= 4) {
                 ifl = (int) Math.round(0.67 * enemyCount);
-                it = (int)Math.round(0.25 * enemyCount);
-                is = (int)enemyCount - ifl - it;
+                it = (int) Math.round(0.25 * enemyCount);
+                is = (int) enemyCount - ifl - it;
 
-            } else if (level>=6) {
-                ifl = (int)Math.round(1.0/2 * enemyCount);
-                it = (int)Math.round(1.0/6 * enemyCount);
-                is = (int) Math.round(1.0/6.0 * enemyCount);
-                ifu = (int)enemyCount - ifl - it - is;
+            } else if (level >= 6) {
+                ifl = (int) Math.round(1.0 / 2 * enemyCount);
+                it = (int) Math.round(1.0 / 6 * enemyCount);
+                is = (int) Math.round(1.0 / 6.0 * enemyCount);
+                ifu = (int) enemyCount - ifl - it - is;
             }
             oifl = 0;
             oit = 0;
             ois = 0;
             oifu = 0;
-            
-        }
 
-        timeFlippers--;
-        if (oifl < ifl && timeFlippers == 0) {
-            timeFlippers=69-random.nextInt(30);
-            oifl++;
-            int s =random.nextInt(M);
-            Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s),s,((MainRenderer) camera.renderer));//model, położenie, entityHandler
-            entityHandler.entities.add(flipper);
-            flipper.model.init(((MainRenderer) camera.renderer).triangles);
         }
-
     }
 }
