@@ -6,7 +6,7 @@ import maths.Vector3;
 import renderer.Model;
 import src.main.MainRenderer;
 import util.Console;
-
+import static src.entity.Player.i;
 import static src.main.MainRenderer.*;
 
 public class Bullet1 extends Entity {
@@ -17,7 +17,7 @@ public class Bullet1 extends Entity {
 
 
         super(model, position, entityHandler);
-        int i =0;
+
         this.renderer = renderer;
         velocity = new Vector3(0,0,2);
         model.scale(2,0.3);
@@ -32,7 +32,7 @@ public class Bullet1 extends Entity {
     public void logic() {
         lifetime++;
         updateHitbox();
-        if (lifetime >= 60 * 0.4) {
+        if (lifetime >= 60 * 0.6) {
             model.remove(renderer.triangles);
             entityHandler.entities.remove(this);
 

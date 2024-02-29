@@ -11,7 +11,7 @@ import java.util.Locale;
 
 
 public class Main {
-    public static int lives=2;
+
     public static int WIDTH =1280, HEIGHT=720;
     public static  String TITLE = "Tempest";
     public static void main(String[] args) {

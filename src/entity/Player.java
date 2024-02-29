@@ -73,8 +73,6 @@ public class Player extends Entity {
                     position.y= tunelwy.get(i);
                     position.z=0;
 
-
-
                     model.rotate(2,angle_.get(i));
                     model.move(position);
                     model.updateVerticies();
@@ -115,7 +113,6 @@ public class Player extends Entity {
                     model.updateVerticies();
                     //Console.log("a");
                 }
-
             }}
             t++;
 
