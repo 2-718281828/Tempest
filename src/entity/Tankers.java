@@ -43,10 +43,34 @@ public class Tankers extends Entity {
 
     public void logic() {
         g++;
-        if (position.z<13){
+        if (position.z<18){
             velocity=new Vector3(0,0,0);
             t++;
+            enemyCount++;
+            String classPath = getClass().getResource("").getPath();
+            if(h==0){
+                Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+2), tunelwy.get(h+2), 40), entityHandler, camera, angle_.get(h+2), h+2, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                Flipper flipper1 = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+1), tunelwy.get(h+1), 40), entityHandler, camera, angle_.get(h+1), h+1, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                entityHandler.entities.add(flipper);
+                entityHandler.entities.add(flipper1);
+                flipper.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+                flipper1.model.init(((src.main.MainRenderer) camera.renderer).triangles);}
+            else if(h==tunelwx.size()-1){
+                Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+2), tunelwy.get(h+2), 40), entityHandler, camera, angle_.get(h+2), h+2, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                Flipper flipper1 = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+1), tunelwy.get(h+1), 40), entityHandler, camera, angle_.get(h+1), h+1, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                entityHandler.entities.add(flipper);
+                entityHandler.entities.add(flipper1);
+                flipper.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+                flipper1.model.init(((src.main.MainRenderer) camera.renderer).triangles);}
+            else{
 
+                Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h-1), tunelwy.get(h-1), 40), entityHandler, camera, angle_.get(h-1), h-1, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                Flipper flipper1 = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+1), tunelwy.get(h+1), 40), entityHandler, camera, angle_.get(h+1), h+1, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                entityHandler.entities.add(flipper);
+                entityHandler.entities.add(flipper1);
+                flipper.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+                flipper1.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+            }
         }
 
 
@@ -68,12 +92,29 @@ public class Tankers extends Entity {
                         entityHandler.entities.remove(this);
                         enemyCount++;
                         String classPath = getClass().getResource("").getPath();
-                        Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h-1), tunelwy.get(h-1), 40), entityHandler, camera, angle_.get(h-1), h-1, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                        if(h==0){
+                        Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+2), tunelwy.get(h+2), 40), entityHandler, camera, angle_.get(h+2), h+2, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
                         Flipper flipper1 = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+1), tunelwy.get(h+1), 40), entityHandler, camera, angle_.get(h+1), h+1, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
                         entityHandler.entities.add(flipper);
                         entityHandler.entities.add(flipper1);
                         flipper.model.init(((src.main.MainRenderer) camera.renderer).triangles);
-                        flipper1.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+                        flipper1.model.init(((src.main.MainRenderer) camera.renderer).triangles);}
+                        else if(h==tunelwx.size()-1){
+                            Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+2), tunelwy.get(h+2), 40), entityHandler, camera, angle_.get(h+2), h+2, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                            Flipper flipper1 = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+1), tunelwy.get(h+1), 40), entityHandler, camera, angle_.get(h+1), h+1, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                            entityHandler.entities.add(flipper);
+                            entityHandler.entities.add(flipper1);
+                            flipper.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+                            flipper1.model.init(((src.main.MainRenderer) camera.renderer).triangles);}
+                        else{
+
+                            Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h-1), tunelwy.get(h-1), 40), entityHandler, camera, angle_.get(h-1), h-1, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                            Flipper flipper1 = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy2.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(h+1), tunelwy.get(h+1), 40), entityHandler, camera, angle_.get(h+1), h+1, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+                            entityHandler.entities.add(flipper);
+                            entityHandler.entities.add(flipper1);
+                            flipper.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+                            flipper1.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+                        }
                         //Console.log(enemyCount);
                     }
                     else if(entityHandler.entities.get(i).getClass()== Bullet3.class) {

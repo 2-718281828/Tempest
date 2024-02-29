@@ -61,7 +61,7 @@ public class Flipper extends Entity {
                     model.move(new Vector3(-position.x,-position.y,0));
   //                  position.x*=-1;
 //position.y*=-1;
-                    position.z=0;
+                    //position.z=0;
 
                     //model.move(position);
                     if(h>i && h!=0) {
@@ -107,11 +107,11 @@ public class Flipper extends Entity {
                         model.move(new Vector3(-position.x,-position.y,0));
                         //                  position.x*=-1;
 //position.y*=-1;
-                        position.z=0;
+                        //position.z=0;
 
                         //model.move(position);
 
-                        if(h-i<tunelwx.size()-1-h+i) {
+                        if (h-i>tunelwx.size()-1-h+i) {
                             model.rotate(2,2*Math.PI-angle_.get(h));
                             if(h==0){
                                 h=tunelwx.size()-1;
@@ -124,7 +124,7 @@ public class Flipper extends Entity {
 
 
                             model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0.48));
-                            model.rotate(2,angle_.get(h));
+                            model.rotate(2,angle_.get(h));position.z+=0.48;
 
                         }
 
@@ -141,6 +141,7 @@ public class Flipper extends Entity {
 
 
                             model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0.48));
+                            position.z+=0.48;
                             model.rotate(2,angle_.get(h));
 
                         }
@@ -148,6 +149,7 @@ public class Flipper extends Entity {
 
                     position.x=tunelwx.get(h);
                     position.y=tunelwy.get(h);
+
                     //model.move(new Vector3(0.02*Math.sin(angle_.get(h)),0.02*Math.cos(angle_.get(h)),0));
                     model.color = Color.red;
                     model.updateVerticies();

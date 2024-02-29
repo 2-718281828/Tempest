@@ -54,7 +54,7 @@ public class MainLogic implements Logic {
     public int it = 0;
     public int is = 0; //ilsoc spikers
     public int ifu = 0; //ilsoc fuseballs
-    public int level = 0;
+    public int level = 1;
     public int oifl = 0;
     public int oit = 0;
     public int ois = 0;
@@ -87,12 +87,14 @@ public class MainLogic implements Logic {
         camera.update();
         ((src.main.MainRenderer) camera.renderer).entityHandler.logic();
         if (isNewTunel) {
+            timeFlippers=69;
+            timeTankers=90;
             superZapper++;
 
             tunelwx.clear();
             tunelwy.clear();
             angle_.clear();
-            level++;
+
             //enemyCount=1;
 
             if (whichTunel == 0) {
@@ -376,6 +378,7 @@ public class MainLogic implements Logic {
                         rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                     }
                     isClosed1 = false;
+                    level++;
                 }
 
 
@@ -400,7 +403,7 @@ public class MainLogic implements Logic {
 
             //triangles = new Triangles();
             player.model.init(src.main.MainRenderer.triangles);
-            isNewTunel = false;
+
             if (level <= 2) {
                 ifl = (int) enemyCount;
             } else if (level ==4) {
@@ -422,6 +425,7 @@ public class MainLogic implements Logic {
             oit = 0;
             ois = 0;
             oifu = 0;
+            isNewTunel = false;
 
         }
         timeFlippers--;
