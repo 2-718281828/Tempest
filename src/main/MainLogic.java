@@ -86,7 +86,7 @@ public class MainLogic implements Logic {
             angle_.clear();
             level++;
             //enemyCount=1;
-            enemyCount = (int) Math.round(16 * Math.exp(level / 69));
+
             if (whichTunel == 0) {
                 double N = 14;
                 M = (int) N;
@@ -374,7 +374,7 @@ public class MainLogic implements Logic {
 
 
             }
-
+            enemyCount = (int) Math.round(16 * Math.exp(level / 69));
 
             whichTunel++;
             Player player = new Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera), new Vector3(0, 0, 4), entityHandler, ((src.main.MainRenderer) camera.renderer), camera);
@@ -383,7 +383,7 @@ public class MainLogic implements Logic {
             entityHandler.entities.add(player);
             src.entity.Rectangle2 rectangle2 = (new src.entity.Rectangle2(LoadModel.loadModel(
                     new File(classPath + "/tunel2.model"), new Color(255, 213, 0), camera.renderer, camera),
-                    new Vector3(tunelwx.get(0), tunelwy.get(0), 30), entityHandler, angle_.get(0), ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                    new Vector3(tunelwx.get(0)+0.02*Math.sin(angle_.get(0)), tunelwy.get(0)+0.02*Math.cos(angle_.get(0)), 30), entityHandler, angle_.get(0), ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
 
             entityHandler.entities.add(rectangle2);
             rectangle2.model.init(((src.main.MainRenderer) camera.renderer).triangles);
@@ -393,6 +393,7 @@ public class MainLogic implements Logic {
             //triangles = new Triangles();
             player.model.init(src.main.MainRenderer.triangles);
             isNewTunel = false;
+            enemyCount = (int) Math.round(16 * Math.exp(level / 69));
             if (level <= 2) {
                 ifl = (int) enemyCount;
             } else if (level ==4) {

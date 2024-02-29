@@ -13,7 +13,7 @@ import static src.main.MainRenderer.*;
 
 public class Rectangle2 extends Entity {
             public src.entity.ID id = src.entity.ID.Rectangle2;
-            public int oi=0; //obecnie i
+            int oi=0; //obecnie i
             public double lastAngle=angle_.get(oi);
             MainRenderer renderer;
            // public static double iloscrectangli1;
@@ -40,34 +40,31 @@ public class Rectangle2 extends Entity {
 
         public void logic (){
                 t++;
+                Console.log("ilosc");
+                Console.log(enemyCount);
+                if(enemyCount==0 || oi>tunelwx.size()-1){
+                    Console.log("SEX");
+                    entityHandler.entities.remove(this);
+                    model.remove(MainRenderer.triangles);
+                }
+                if(oi!=i && enemyCount!=0 && oi<=tunelwx.size()-1){
+                    lastAngle=angle_.get(oi);
+                    model.rotate(2,(2*Math.PI)-lastAngle);
+                    position.x*=-1;
+                    position.y*=-1;
+                    position.z=0;
+                    model.move(position);
+                    position.x= tunelwx.get(i)+0.002*Math.sin(angle_.get(i));
+                    position.y= tunelwy.get(i)+0.02*Math.cos(angle_.get(i));
+                    position.z=0;
+                    //model.rotate(2,(2*Math.PI)-rotation);
+                    model.rotate(2,angle_.get(i));
+                    model.move(position);
+                    model.updateVerticies();
 
-                if(oi!=i){lastAngle=angle_.get(oi);
-                model.rotate(2,(2*Math.PI)-lastAngle);
-                position.x*=-1;
-                position.y*=-1;
-                position.z=0;
-                model.move(position);
-                position.x= tunelwx.get(i)+0.05*Math.sin(angle_.get(i));
-                position.y= tunelwy.get(i)+0.05*Math.cos(angle_.get(i));
-                position.z=0;
-                //model.rotate(2,(2*Math.PI)-rotation);
-                model.rotate(2,angle_.get(i));
-                model.move(position);
-                model.updateVerticies();
+                    oi=i;
+                }
 
-                oi=i;}
-            if(enemyCount==0){
-                Console.log("SEX");
-                entityHandler.entities.remove(this);
-                model.remove(MainRenderer.triangles);
-
-               // Console.log(iloscrectangli);
-                //if(t%10==0){
-                //model.scale(2,0.7);
-                //model.move(new Vector3(0,0,-position.z*.7));
-
-                //t=0;
-            }
 
                 //Console.log("A");}
 }

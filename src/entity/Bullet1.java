@@ -23,7 +23,7 @@ public class Bullet1 extends Entity {
 
         velocity = new Vector3(0,0,1.6);
         model.scale(2,1.6);
-        model.scale(Math.PI/13);
+        model.scale(Math.PI/23);
         //model.updateVerticies();
         //model.rotate(2,Math.PI);
         //model.rotate(0,-Math.PI/2);
