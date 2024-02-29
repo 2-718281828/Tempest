@@ -25,7 +25,7 @@ public class Rectangle2 extends Entity {
                 model.move(velocity);
                 //iloscrectangli=N;
                 //Vector3 axis = new Vector3(position.x,position.y+1/(N*Math.tan(Math.PI/N)),position.z);
-                model.rotate(2,(angle));
+                model.rotate(2,(angle)-Math.PI/2);
 
 
                 //position.x=position.x+(Math.cos(angle)/(2*Math.tan(Math.PI/(N))));
@@ -42,7 +42,7 @@ public class Rectangle2 extends Entity {
                 t++;
 
                 if(oi!=i){lastAngle=angle_.get(oi);
-                model.rotate(2,(2*Math.PI)-lastAngle+Math.PI/2);
+                model.rotate(2,(2*Math.PI)-lastAngle);
                 position.x*=-1;
                 position.y*=-1;
                 position.z=0;
