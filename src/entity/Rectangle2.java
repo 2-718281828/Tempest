@@ -41,24 +41,23 @@ public class Rectangle2 extends Entity {
         public void logic (){
                 t++;
 
-                if(oi!=i){
-
-                model.rotate(2,(2*Math.PI)-lastAngle);
+                if(oi!=i){lastAngle=angle_.get(oi);
+                model.rotate(2,(2*Math.PI)-lastAngle+Math.PI/2);
                 position.x*=-1;
                 position.y*=-1;
                 position.z=0;
                 model.move(position);
-                position.x= tunelwx.get(i);
-                position.y= tunelwy.get(i);
+                position.x= tunelwx.get(i)+0.05*Math.sin(angle_.get(i));
+                position.y= tunelwy.get(i)+0.05*Math.cos(angle_.get(i));
                 position.z=0;
                 //model.rotate(2,(2*Math.PI)-rotation);
-                model.rotate(2,angle_.get(i)-Math.PI/2);
+                model.rotate(2,angle_.get(i));
                 model.move(position);
                 model.updateVerticies();
-                lastAngle=angle_.get(oi);
+
                 oi=i;}
             if(enemyCount==0){
-
+                Console.log("SEX");
                 entityHandler.entities.remove(this);
                 model.remove(MainRenderer.triangles);
 

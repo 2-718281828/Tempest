@@ -382,13 +382,11 @@ public class MainLogic implements Logic {
 
             entityHandler.entities.add(player);
             src.entity.Rectangle2 rectangle2 = (new src.entity.Rectangle2(LoadModel.loadModel(
-                    new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                    new File(classPath + "/tunel2.model"), new Color(255, 213, 0), camera.renderer, camera),
                     new Vector3(tunelwx.get(0), tunelwy.get(0), 30), entityHandler, angle_.get(0), ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
 
             entityHandler.entities.add(rectangle2);
             rectangle2.model.init(((src.main.MainRenderer) camera.renderer).triangles);
-
-            //czuje sie jak tau neutrino, albo benzen. benzen.
             src.main.KeyHandler keyHandler1 = new src.main.KeyHandler(player);
             camera.renderer.addKeyListener(keyHandler1);
 

@@ -157,7 +157,7 @@ public class Flipper extends Entity {
                         model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(this);
                         enemyCount--;
-                        Console.log(enemyCount);
+                        //Console.log(enemyCount);
                     }
                     else if(entityHandler.entities.get(i).getClass()== src.entity.Player.class) {
                         lives--;
@@ -167,7 +167,7 @@ public class Flipper extends Entity {
                         model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(this);
                         enemyCount--;
-                        Console.log(enemyCount);
+                        //Console.log(enemyCount);
                     }
                 }
             }

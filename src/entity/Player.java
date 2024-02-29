@@ -121,7 +121,7 @@ public class Player extends Entity {
             updateHitbox();
             if(enemyCount==0){
                 i=0;
-                Console.log("JMGMD");
+                Console.log("sex");
                 entityHandler.entities.remove(this);
                 model.remove(MainRenderer.triangles);
 
