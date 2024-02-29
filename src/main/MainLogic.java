@@ -102,6 +102,7 @@ public class MainLogic implements Logic {
                 isClosed1 = true;
                 //enemyCount++;
                 //whichTunel++;
+
             } else if (whichTunel == 1) {
                 double N = 10;
                 M= (int)N;
@@ -138,10 +139,75 @@ public class MainLogic implements Logic {
                     rectangle.model.init(((MainRenderer) camera.renderer).triangles);
                 }
                 isClosed1 = false;
-            } else if (whichTunel == 3) {
+            } else if (whichTunel == 3) //Trzeci tunel żle działa
+            {
                 double N = 16;
                 M= (int)N;
-                //boolean isClosed1=true;
+                //1
+                tunelwx.add(0.5);
+                tunelwy.add(1.0);
+                angle_.add(Math.PI/2.0);
+                //2
+                tunelwx.add(1.0);
+                tunelwy.add(0.5);
+                angle_.add(0.0);
+                //3
+                tunelwx.add(1.5);
+                tunelwy.add(0.0);
+                angle_.add(Math.PI/2.0);
+                //4
+                tunelwx.add(2.0);
+                tunelwy.add(-0.5);
+                angle_.add(0.0);
+                //5
+                tunelwx.add(2.0);
+                tunelwy.add(-1.5);
+                angle_.add(0.0);
+                //6
+                tunelwx.add(1.5);
+                tunelwy.add(-2.0);
+                angle_.add(Math.PI/2.0);
+                //7
+                tunelwx.add(1.0);
+                tunelwy.add(-2.5);
+                angle_.add(0.0);
+                //8
+                tunelwx.add(0.5);
+                tunelwy.add(-3.0);
+                angle_.add(Math.PI/2.0);
+                //9
+                tunelwx.add(-0.5);
+                tunelwy.add(-3.0);
+                angle_.add(Math.PI/2.0);
+                //10
+                tunelwx.add(-1.0);
+                tunelwy.add(-2.5);
+                angle_.add(0.0);
+                //11
+                tunelwx.add(-1.5);
+                tunelwy.add(-2.0);
+                angle_.add(Math.PI/2.0);
+                //12
+                tunelwx.add(-2.0);
+                tunelwy.add(-1.5);
+                angle_.add(0.0);
+                //13
+                tunelwx.add(-2.0);
+                tunelwy.add(-0.5);
+                angle_.add(0.0);
+                //14
+                tunelwx.add(-1.5);
+                tunelwy.add(0.0);
+                angle_.add(Math.PI/2.0);
+                //15
+                tunelwx.add(-1.0);
+                tunelwy.add(0.5);
+                angle_.add(0.0);
+                //16
+                tunelwx.add(-0.5);
+                tunelwy.add(1.0);
+                angle_.add(Math.PI/2.0);
+                boolean isClosed1=true;
                 for (double d = 0; d < N; d++) {
 
                     for (int q = 0; q < N; q++) {
@@ -155,7 +221,10 @@ public class MainLogic implements Logic {
                     isClosed1 = true;
                 }
             }
+            else if (whichTunel==4)
+            {
 
+            }
             //isClosed1 = false;
             //enemyCount++;
             whichTunel++;
