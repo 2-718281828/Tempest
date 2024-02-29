@@ -48,6 +48,7 @@ public class MainLogic implements Logic {
     }
 
     public double t = 0;
+    public int timeFlippers=69;
     public int ifl = 0; //ilosc flippers
     public int it = 0;
     public int is = 0; //ilsoc spikers
@@ -278,32 +279,7 @@ public class MainLogic implements Logic {
                     isClosed1 = true;
                 }
             }
-            else if (whichTunel == 6) //Szósty tunel
-            {
-                double N = 18;
-                M= (int)N;
-                double[] x = {0.5,1.5,2.5,3.5,4.0,3.5,2.5,1.5,0.5,-0.5,-1.5,-2.5,-3.5,-4.0,-3.5,-2.5,-1.5,-0.5};
-                double[] y = {1.5,1.5,1.5,1.0,0.0,-1.0,-1.5,-1.5,-1.5,-1.5,-1.5,-1.5,-1.0,-0.0,1.0,1.5,1.5,1.5};
-                double[] angle = {d90,d90,d90,d45,d0,d135,d90,d90,d90,d90,d90,d90,d45,d0,d135,d90,d90,d90};
-                for(int l = 0; l<N; l++)
-                {
-                    tunelwx.add(x[l]);
-                    tunelwy.add(y[l]);
-                    angle_.add(angle[l]);
-                }
-                for (double d = 0; d < N; d++) {
 
-                    for (int q = 0; q < N; q++) {
-                        Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
-                                new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
-
-                        entityHandler.entities.add(rectangle);
-                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
-                    }
-                    isClosed1 = true;
-                }
-            }
             else if (whichTunel == 6) //Szósty tunel
             {
                 double N = 18;
@@ -369,8 +345,9 @@ public class MainLogic implements Logic {
             
         }
 
-
-        if (oifl < ifl && random.nextInt(69) == 14) {
+        timeFlippers--;
+        if (oifl < ifl && timeFlippers == 0) {
+            timeFlippers=69-random.nextInt(30);
             oifl++;
             int s =random.nextInt(M);
             Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s),s,((MainRenderer) camera.renderer));//model, położenie, entityHandler
