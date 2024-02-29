@@ -7,6 +7,7 @@ import renderer.Model;
 import src.main.MainRenderer;
 import util.Console;
 import static src.entity.Player.i;
+import static src.main.MainLogic.enemyCount;
 import static src.main.MainRenderer.*;
 
 public class Bullet1 extends Entity {
@@ -19,9 +20,10 @@ public class Bullet1 extends Entity {
         super(model, position, entityHandler);
 
         this.renderer = renderer;
-        velocity = new Vector3(0,0,2);
-        model.scale(2,0.3);
-        model.scale(Math.PI/10);
+
+        velocity = new Vector3(0,0,1.6);
+        model.scale(2,1.6);
+        model.scale(Math.PI/13);
         //model.updateVerticies();
         //model.rotate(2,Math.PI);
         //model.rotate(0,-Math.PI/2);
@@ -39,8 +41,9 @@ public class Bullet1 extends Entity {
         }
         position.add(velocity);
         model.move(velocity);
+
         model.updateVerticies();
-        //Console.log("sex");
+       // Console.log("sex");
         //Console.log(velocity);
 
     }

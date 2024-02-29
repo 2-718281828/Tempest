@@ -3,12 +3,13 @@ package src.entity;
 import entity.Entity;
 import entity.EntityHandler;
 import maths.Vector3;
+import renderer.Camera;
 import renderer.Model;
 import src.main.MainRenderer;
 import util.Console;
 
 import java.util.*;
-
+import static src.main.Main.lives;
 import static src.main.MainLogic.enemyCount;
 import static src.main.MainRenderer.*;
 
@@ -18,17 +19,19 @@ public class Player extends Entity {
         public double defaultAngle;
         public static boolean[] keys = new boolean[4];
         MainRenderer renderer;
-        public Player(Model model, Vector3 position, EntityHandler entityHandler, MainRenderer renderer){
+        Camera camera;
+        public Player(Model model, Vector3 position, EntityHandler entityHandler, MainRenderer renderer, Camera camera){
 
 
             super(model, position, entityHandler);
             this.renderer = renderer;
+
             velocity = new Vector3(0, 0, 0);
             position.x = tunelwx.get(0);
             position.y=tunelwy.get(0);
             model.move(position);
-
-            model.scale(0.5);
+            this.camera = camera;
+            model.scale(0.4);
             model.updateVerticies();
             //model.rotate(2,Math.PI);
             model.rotate(0,-Math.PI/2);
@@ -115,7 +118,7 @@ public class Player extends Entity {
                 }
             }}
             t++;
-
+            updateHitbox();
             if(enemyCount==0){
                 i=0;
                 Console.log("JMGMD");
@@ -125,5 +128,6 @@ public class Player extends Entity {
 
             }
         }
-    }
+        }
+
 

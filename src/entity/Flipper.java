@@ -11,6 +11,7 @@ import util.Console;
 import java.util.Random;
 
 import static src.entity.Player.i;
+import static src.main.Main.lives;
 import static src.main.MainRenderer.*;
 import static src.main.MainLogic.enemyCount;
 public class Flipper extends Entity {
@@ -23,7 +24,10 @@ public class Flipper extends Entity {
         super(model, position, entityHandler);
         h = s;
         this.renderer=renderer;
-        velocity = new Vector3(0, 0, -0.2);
+        if(isClosed1){
+        velocity = new Vector3(0, 0, -0.16);}
+        if(!isClosed1){
+        velocity = new Vector3(0, 0, -0.32);}
         //model.rotate(0,Math.PI/2);
         model.rotate(2,angle-Math.PI/2);
         //model.rotate(0,Math.PI/2);
@@ -82,6 +86,7 @@ public class Flipper extends Entity {
                         model.rotate(2,angle_.get(h));
 
                     }
+
                     position.x=tunelwx.get(h);
                     position.y=tunelwy.get(h);
                     model.updateVerticies();
@@ -142,13 +147,23 @@ public class Flipper extends Entity {
         //Console.log(position.z);
         model.updateVerticies();
         updateHitbox();
+
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             if (entityHandler.entities.get(i) != this) {
                 if (collision(entityHandler.entities.get(i).hitbox)) {
                     if(entityHandler.entities.get(i).getClass()==Bullet1.class) {
-                        util.Console.log("Kolizja z pociskiem");
                         entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(entityHandler.entities.get(i));
+                        model.remove(((MainRenderer)camera.renderer).triangles);
+                        entityHandler.entities.remove(this);
+                        enemyCount--;
+                        Console.log(enemyCount);
+                    }
+                    else if(entityHandler.entities.get(i).getClass()==Player.class) {
+                        lives--;
+                        Console.log(lives);
+                        //entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
+                        //entityHandler.entities.remove(entityHandler.entities.get(i));
                         model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(this);
                         enemyCount--;
@@ -157,5 +172,6 @@ public class Flipper extends Entity {
                 }
             }
         }
+
     }
 }

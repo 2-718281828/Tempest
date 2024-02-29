@@ -22,7 +22,7 @@ import static src.main.MainRenderer.*;
 public class MainLogic implements Logic {
     public EntityHandler entityHandler;
     public Camera camera;
-    public static int enemyCount = 0;
+    public static double enemyCount;
     String classPath = getClass().getResource("").getPath();
     //public Triangles triangles;
     Random random = new Random();
@@ -281,7 +281,7 @@ public class MainLogic implements Logic {
             //isClosed1 = false;
             //enemyCount++;
             whichTunel++;
-            Player player = new Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera), new Vector3(0, 0, 4), entityHandler, ((MainRenderer) camera.renderer));
+            Player player = new Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera), new Vector3(0, 0, 4), entityHandler, ((MainRenderer) camera.renderer),camera);
 
 
             entityHandler.entities.add(player);
@@ -293,21 +293,22 @@ public class MainLogic implements Logic {
             //triangles = new Triangles();
             player.model.init(src.main.MainRenderer.triangles);
             isNewTunel = false;
-            if (level < 3) {
-                ifl = enemyCount;
-            } else if (level < 5) {
-                ifl = Math.round(4 / 5 * enemyCount);
-                it = enemyCount - ifl;
-            } else if (level < 7) {
-                ifl = Math.round(2 / 3 * enemyCount);
-                it = Math.round(1 / 4 * enemyCount);
-                is = enemyCount - ifl - it;
+            if (level <= 2) {
+                ifl = (int) enemyCount;
+            } else if (level <= 4 && level>=2) {
+                Console.log("sex");
+                ifl =(int) Math.round(0.8* enemyCount);
+                it = (int)enemyCount - ifl;
+            } else if (level <= 6&&level>=4){
+                ifl = (int) Math.round(0.67 * enemyCount);
+                it = (int)Math.round(0.25 * enemyCount);
+                is = (int)enemyCount - ifl - it;
 
-            } else if (level < 9) {
-                ifl = Math.round(1 / 2 * enemyCount);
-                it = Math.round(1 / 6 * enemyCount);
-                is = Math.round(1 / 6 * enemyCount);
-                ifu = enemyCount - ifl - it - is;
+            } else if (level>=6) {
+                ifl = (int)Math.round(1.0/2 * enemyCount);
+                it = (int)Math.round(1.0/6 * enemyCount);
+                is = (int) Math.round(1.0/6.0 * enemyCount);
+                ifu = (int)enemyCount - ifl - it - is;
             }
             oifl = 0;
             oit = 0;
@@ -317,7 +318,7 @@ public class MainLogic implements Logic {
         }
 
 
-        if (oifl < ifl && random.nextInt(80) == 14) {
+        if (oifl < ifl && random.nextInt(69) == 14) {
             oifl++;
             int s =random.nextInt(M);
             Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s),s,((MainRenderer) camera.renderer));//model, położenie, entityHandler
