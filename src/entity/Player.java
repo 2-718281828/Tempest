@@ -22,7 +22,6 @@ public class Player extends Entity {
 
 
             super(model, position, entityHandler);
-            int i =0;
             this.renderer = renderer;
             velocity = new Vector3(0, 0, 0);
             position.x = tunelwx.get(0);

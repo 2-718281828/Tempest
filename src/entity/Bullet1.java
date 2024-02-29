@@ -20,7 +20,7 @@ public class Bullet1 extends Entity {
         int i =0;
         this.renderer = renderer;
         velocity = new Vector3(0,0,2);
-
+        model.scale(2,0.3);
         model.scale(Math.PI/10);
         //model.updateVerticies();
         //model.rotate(2,Math.PI);
@@ -31,7 +31,8 @@ public class Bullet1 extends Entity {
     int lifetime=0;
     public void logic() {
         lifetime++;
-        if (lifetime >= 60 * 0.3) {
+        updateHitbox();
+        if (lifetime >= 60 * 0.4) {
             model.remove(renderer.triangles);
             entityHandler.entities.remove(this);
 

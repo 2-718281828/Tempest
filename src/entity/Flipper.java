@@ -41,7 +41,7 @@ public class Flipper extends Entity {
             velocity=new Vector3(0,0,0);
             t++;
             if(t%120==0){
-               // if(true){
+                if(isClosed1==false){
                     model.move(new Vector3(-position.x,-position.y,0));
   //                  position.x*=-1;
 //position.y*=-1;
@@ -57,6 +57,15 @@ public class Flipper extends Entity {
                         model.rotate(2,angle_.get(h));
 
                     }
+                    else if(h>i && h==0) {
+                        model.rotate(2,2*Math.PI-angle_.get(h));
+                        h++;
+
+
+                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                        model.rotate(2,angle_.get(h));
+
+                    }
                     else if(h<i && h!=tunelwx.size()-1) {
                         model.rotate(2,2*Math.PI-angle_.get(h));
                         h++;
@@ -65,18 +74,74 @@ public class Flipper extends Entity {
                         model.rotate(2,angle_.get(h));
 
                     }
-                position.x=tunelwx.get(h);
-                position.y=tunelwy.get(h);
-                    model.updateVerticies();
+                    else if(h<i && h==tunelwx.size()-1) {
+                        model.rotate(2,2*Math.PI-angle_.get(h));
+                        h--;
 
-               // }
+                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                        model.rotate(2,angle_.get(h));
+
+                    }
+                    position.x=tunelwx.get(h);
+                    position.y=tunelwy.get(h);
+                    model.updateVerticies();
+                }
+                    else if(isClosed1==true){
+                        model.move(new Vector3(-position.x,-position.y,0));
+                        //                  position.x*=-1;
+//position.y*=-1;
+                        position.z=0;
+
+                        //model.move(position);
+                        if(Math.abs(h-i)>Math.abs(i-h)) {
+                            model.rotate(2,2*Math.PI-angle_.get(h));
+                            if(h==0){
+                                h=tunelwx.size()-1;
+                            }
+                            else{
+                                h--;
+                            }
+
+
+
+
+                            model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                            model.rotate(2,angle_.get(h));
+
+                        }
+                        else if(Math.abs(h-i)<=Math.abs(i-h)) {
+                            model.rotate(2,2*Math.PI-angle_.get(h));
+                            if(h==0){
+                                h=tunelwx.size()-1;
+                            }
+                            else{
+                                h--;
+                            }
+                           // model.rotate(2,2*Math.PI-angle_.get(h));
+
+
+
+                            model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                            model.rotate(2,angle_.get(h));
+
+                        }
+
+
+                    position.x=tunelwx.get(h);
+                    position.y=tunelwy.get(h);
+                    model.updateVerticies();
+                    }
+
+
             }
 
         }
+        model.updateVerticies();
         position.z+=velocity.z;
         model.move(velocity);
         //Console.log(position.z);
         model.updateVerticies();
+        updateHitbox();
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             if (entityHandler.entities.get(i) != this) {
                 if (collision(entityHandler.entities.get(i).hitbox)) {
@@ -84,7 +149,10 @@ public class Flipper extends Entity {
                         util.Console.log("Kolizja z pociskiem");
                         entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(entityHandler.entities.get(i));
+                        model.remove(((MainRenderer)camera.renderer).triangles);
+                        entityHandler.entities.remove(this);
                         enemyCount--;
+                        Console.log(enemyCount);
                     }
                 }
             }

@@ -65,7 +65,7 @@ public class MainLogic implements Logic {
         t++;
         if (t % 2 == 0) {
             if (Player.keys[0]) {
-                Bullet1 bullet1 = new Bullet1(LoadModel.loadModel(new File(classPath + "/monkey.model"), Color.red, camera.renderer, camera), new Vector3(tunelwx.get(i), tunelwy.get(i), 10), entityHandler, ((MainRenderer) camera.renderer));//model, położenie, entityHandler
+                Bullet1 bullet1 = new Bullet1(LoadModel.loadModel(new File(classPath + "/monkey.model"), Color.red, camera.renderer, camera), new Vector3(tunelwx.get(i), tunelwy.get(i), 7.8), entityHandler, ((MainRenderer) camera.renderer));//model, położenie, entityHandler
                 entityHandler.entities.add(bullet1);
                 bullet1.model.init(((MainRenderer) camera.renderer).triangles);
             }
@@ -80,7 +80,7 @@ public class MainLogic implements Logic {
             level++;
             //enemyCount=1;
             enemyCount = (int) Math.round(16 * Math.exp(level / 69));
-            if (whichTunel == 0) {
+            if (whichTunel ==0  ) {
                 double N = 14;
                 M= (int) N;
                 //boolean isClosed1=true;
@@ -102,7 +102,6 @@ public class MainLogic implements Logic {
                 isClosed1 = true;
                 //enemyCount++;
                 //whichTunel++;
-
             } else if (whichTunel == 1) {
                 double N = 10;
                 M= (int)N;
@@ -207,7 +206,7 @@ public class MainLogic implements Logic {
                 tunelwx.add(-0.5);
                 tunelwy.add(1.0);
                 angle_.add(Math.PI/2.0);
-                boolean isClosed1=true;
+
                 for (double d = 0; d < N; d++) {
 
                     for (int q = 0; q < N; q++) {
@@ -221,10 +220,7 @@ public class MainLogic implements Logic {
                     isClosed1 = true;
                 }
             }
-            else if (whichTunel==4)
-            {
 
-            }
             //isClosed1 = false;
             //enemyCount++;
             whichTunel++;
@@ -260,10 +256,11 @@ public class MainLogic implements Logic {
             oit = 0;
             ois = 0;
             oifu = 0;
+            
         }
 
 
-        if (oifl < ifl && random.nextInt(120) == 99) {
+        if (oifl < ifl && random.nextInt(80) == 14) {
             oifl++;
             int s =random.nextInt(M);
             Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s),s,((MainRenderer) camera.renderer));//model, położenie, entityHandler
