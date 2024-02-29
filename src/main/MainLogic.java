@@ -1,6 +1,6 @@
-package src.main;
+package main;
 import src.entity.Bullet1;
-import src.entity.Flipper;
+import entity.Flipper;
 import src.entity.Rectangle;
 import src.entity.Player;
 import engine.*;
@@ -34,7 +34,7 @@ public class MainLogic implements Logic {
         this.entityHandler = entityHandler;
 
         for (int i = 0; i < entityHandler.entities.size(); i++) {
-            entityHandler.entities.get(i).model.init(((MainRenderer) camera.renderer).triangles);
+            entityHandler.entities.get(i).model.init(((src.main.MainRenderer) camera.renderer).triangles);
         }
         double N = 14;
         //boolean isClosed1=true;
@@ -72,13 +72,13 @@ public class MainLogic implements Logic {
         t++;
         if (t % 2 == 0) {
             if (Player.keys[0]) {
-                Bullet1 bullet1 = new Bullet1(LoadModel.loadModel(new File(classPath + "/monkey.model"), Color.red, camera.renderer, camera), new Vector3(tunelwx.get(i), tunelwy.get(i), 7.8), entityHandler, ((MainRenderer) camera.renderer));//model, położenie, entityHandler
+                Bullet1 bullet1 = new Bullet1(LoadModel.loadModel(new File(classPath + "/monkey.model"), Color.red, camera.renderer, camera), new Vector3(tunelwx.get(i), tunelwy.get(i), 7.8), entityHandler, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
                 entityHandler.entities.add(bullet1);
-                bullet1.model.init(((MainRenderer) camera.renderer).triangles);
+                bullet1.model.init(((src.main.MainRenderer) camera.renderer).triangles);
             }
         }
         camera.update();
-        ((MainRenderer) camera.renderer).entityHandler.logic();
+        ((src.main.MainRenderer) camera.renderer).entityHandler.logic();
         if (isNewTunel) {
 
             tunelwx.clear();
@@ -98,9 +98,9 @@ public class MainLogic implements Logic {
 
                     Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                             new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                            new Vector3(Math.cos(2 * Math.PI * (d / N)) / (2 * Math.tan(Math.PI / (N))), Math.sin(2 * Math.PI * (d / N)) / (2 * Math.tan(Math.PI / (N))), 30), entityHandler, 2 * Math.PI * (d / N), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                            new Vector3(Math.cos(2 * Math.PI * (d / N)) / (2 * Math.tan(Math.PI / (N))), Math.sin(2 * Math.PI * (d / N)) / (2 * Math.tan(Math.PI / (N))), 30), entityHandler, 2 * Math.PI * (d / N), N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
                     entityHandler.entities.add(rectangle);
-                    rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                    rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                     //Console.log("SEX");
                     //Console.log(angle_); sam juz nie rozumiem jak to działa ale działą czyli jest git,szkoda ze jako jedyny pisze (subiektywnie) najtrudniejsza gre 2 dni przed dedlinem >_< (23:38 27.02.2024)
                 }
@@ -120,9 +120,9 @@ public class MainLogic implements Logic {
 
                     Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                             new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                            new Vector3(-5 + 1 * d, -2, 30), entityHandler, Math.PI / 2, N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                            new Vector3(-5 + 1 * d, -2, 30), entityHandler, Math.PI / 2, N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
                     entityHandler.entities.add(rectangle);
-                    rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                    rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
 
                 }
 
@@ -140,9 +140,9 @@ public class MainLogic implements Logic {
 
                     Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                             new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                            new Vector3((((-7 / Math.sqrt(2) + d / Math.sqrt(2)))), -2.0 + 1 / Math.cos(Math.PI / 4), 30), entityHandler, Math.PI * Math.pow((-1), d) / 4, N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                            new Vector3((((-7 / Math.sqrt(2) + d / Math.sqrt(2)))), -2.0 + 1 / Math.cos(Math.PI / 4), 30), entityHandler, Math.PI * Math.pow((-1), d) / 4, N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
                     entityHandler.entities.add(rectangle);
-                    rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                    rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                 }
                 isClosed1 = false;
             } else if (whichTunel == 3) //Trzeci tunel
@@ -219,10 +219,10 @@ public class MainLogic implements Logic {
                     for (int q = 0; q < N; q++) {
                         Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                                 new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
 
                         entityHandler.entities.add(rectangle);
-                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                        rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                     }
                     isClosed1 = true;
                 }
@@ -243,10 +243,10 @@ public class MainLogic implements Logic {
                     for (int q = 0; q < N; q++) {
                         Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                                 new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
 
                         entityHandler.entities.add(rectangle);
-                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                        rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                     }
                     isClosed1 = true;
                 }
@@ -267,10 +267,10 @@ public class MainLogic implements Logic {
                     for (int q = 0; q < N; q++) {
                         Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                                 new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
 
                         entityHandler.entities.add(rectangle);
-                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                        rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                     }
                     isClosed1 = true;
                 }
@@ -291,10 +291,10 @@ public class MainLogic implements Logic {
                     for (int q = 0; q < N; q++) {
                         Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                                 new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
 
                         entityHandler.entities.add(rectangle);
-                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                        rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                     }
                     isClosed1 = true;
                 }
@@ -314,10 +314,10 @@ public class MainLogic implements Logic {
                     for (int q = 0; q < N; q++) {
                         Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                                 new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
 
                         entityHandler.entities.add(rectangle);
-                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                        rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                     }
                     isClosed1 = false;
                 }
@@ -337,10 +337,10 @@ public class MainLogic implements Logic {
                     for (int q = 0; q < N; q++) {
                         Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                                 new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
 
                         entityHandler.entities.add(rectangle);
-                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                        rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                     }
                     isClosed1 = false;
                 }
@@ -362,10 +362,10 @@ public class MainLogic implements Logic {
                     for (int q = 0; q < N; q++) {
                         Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                                 new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
 
                         entityHandler.entities.add(rectangle);
-                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                        rectangle.model.init(((src.main.MainRenderer) camera.renderer).triangles);
                     }
                     isClosed1 = false;
                 }
@@ -375,23 +375,21 @@ public class MainLogic implements Logic {
 
             }
 
-            timeFlippers--;
-            if (oifl < ifl && timeFlippers == 0) {
-                timeFlippers = 69 - random.nextInt(30);
-                oifl++;
-                int s = random.nextInt(M);
-                Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s), s, ((MainRenderer) camera.renderer));//model, położenie, entityHandler
-                entityHandler.entities.add(flipper);
-                flipper.model.init(((MainRenderer) camera.renderer).triangles);
-            }
+
             whichTunel++;
-            Player player = new Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera), new Vector3(0, 0, 4), entityHandler, ((MainRenderer) camera.renderer), camera);
+            Player player = new Player(LoadModel.loadModel(new File(classPath + "/enemy2.model"), new Color(255, 213, 0), camera.renderer, camera), new Vector3(0, 0, 4), entityHandler, ((src.main.MainRenderer) camera.renderer), camera);
 
 
             entityHandler.entities.add(player);
+            src.entity.Rectangle2 rectangle2 = (new src.entity.Rectangle2(LoadModel.loadModel(
+                    new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                    new Vector3(tunelwx.get(0), tunelwy.get(0), 30), entityHandler, angle_.get(0), ((src.main.MainRenderer) camera.renderer)));//model, położenie, entityHandler
+
+            entityHandler.entities.add(rectangle2);
+            rectangle2.model.init(((src.main.MainRenderer) camera.renderer).triangles);
 
             //czuje sie jak tau neutrino, albo benzen. benzen.
-            KeyHandler keyHandler1 = new KeyHandler(player);
+            src.main.KeyHandler keyHandler1 = new src.main.KeyHandler(player);
             camera.renderer.addKeyListener(keyHandler1);
 
             //triangles = new Triangles();
@@ -399,16 +397,16 @@ public class MainLogic implements Logic {
             isNewTunel = false;
             if (level <= 2) {
                 ifl = (int) enemyCount;
-            } else if (level <= 4 && level >= 2) {
+            } else if (level ==4) {
                 Console.log("sex");
                 ifl = (int) Math.round(0.8 * enemyCount);
                 it = (int) enemyCount - ifl;
-            } else if (level <= 6 && level >= 4) {
+            } else if (level >4 && level<7) {
                 ifl = (int) Math.round(0.67 * enemyCount);
                 it = (int) Math.round(0.25 * enemyCount);
                 is = (int) enemyCount - ifl - it;
 
-            } else if (level >= 6) {
+            } else if (level > 7) {
                 ifl = (int) Math.round(1.0 / 2 * enemyCount);
                 it = (int) Math.round(1.0 / 6 * enemyCount);
                 is = (int) Math.round(1.0 / 6.0 * enemyCount);
@@ -419,6 +417,15 @@ public class MainLogic implements Logic {
             ois = 0;
             oifu = 0;
 
+        }
+        timeFlippers--;
+        if (oifl < ifl && timeFlippers == 0) {
+            timeFlippers = 69 - random.nextInt(30);
+            oifl++;
+            int s = random.nextInt(M);
+            Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s), s, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+            entityHandler.entities.add(flipper);
+            flipper.model.init(((src.main.MainRenderer) camera.renderer).triangles);
         }
     }
 }

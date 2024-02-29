@@ -1,4 +1,4 @@
-package src.entity;
+package entity;
 import entity.Entity;
 import entity.EntityHandler;
 import maths.Vector3;
@@ -13,9 +13,9 @@ import java.util.Random;
 import static src.entity.Player.i;
 import static src.main.Main.lives;
 import static src.main.MainRenderer.*;
-import static src.main.MainLogic.enemyCount;
+import static main.MainLogic.enemyCount;
 public class Flipper extends Entity {
-    public ID id = ID.Flipper;
+    public src.entity.ID id = src.entity.ID.Flipper;
     double t = 0;
     public int h;
     Camera camera;
@@ -151,7 +151,7 @@ public class Flipper extends Entity {
         for (int i = 0; i < entityHandler.entities.size(); i++) {
             if (entityHandler.entities.get(i) != this) {
                 if (collision(entityHandler.entities.get(i).hitbox)) {
-                    if(entityHandler.entities.get(i).getClass()==Bullet1.class) {
+                    if(entityHandler.entities.get(i).getClass()== src.entity.Bullet1.class) {
                         entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
                         entityHandler.entities.remove(entityHandler.entities.get(i));
                         model.remove(((MainRenderer)camera.renderer).triangles);
@@ -159,7 +159,7 @@ public class Flipper extends Entity {
                         enemyCount--;
                         Console.log(enemyCount);
                     }
-                    else if(entityHandler.entities.get(i).getClass()==Player.class) {
+                    else if(entityHandler.entities.get(i).getClass()== src.entity.Player.class) {
                         lives--;
                         Console.log(lives);
                         //entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);

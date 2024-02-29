@@ -7,11 +7,11 @@ import renderer.Model;
 import src.main.MainRenderer;
 import util.Console;
 
-import static src.main.MainLogic.enemyCount;
+import static main.MainLogic.enemyCount;
 import static src.main.MainRenderer.isNewTunel;
 
 public class Rectangle extends Entity {
-            public ID id = ID.Rectangle;
+            public src.entity.ID id = src.entity.ID.Rectangle;
             MainRenderer renderer;
             public static double iloscrectangli;
 

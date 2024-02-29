@@ -8,11 +8,11 @@ import src.main.MainRenderer;
 import util.Console;
 
 import static src.entity.Player.i;
-import static src.main.MainLogic.enemyCount;
+import static main.MainLogic.enemyCount;
 import static src.main.MainRenderer.*;
 
 public class Rectangle2 extends Entity {
-            public ID id = ID.Rectangle2;
+            public src.entity.ID id = src.entity.ID.Rectangle2;
             public int oi=0; //obecnie i
             public double lastAngle=angle_.get(oi);
             MainRenderer renderer;
@@ -52,7 +52,7 @@ public class Rectangle2 extends Entity {
                 position.y= tunelwy.get(i);
                 position.z=0;
                 //model.rotate(2,(2*Math.PI)-rotation);
-                model.rotate(2,angle_.get(i));
+                model.rotate(2,angle_.get(i)-Math.PI/2);
                 model.move(position);
                 model.updateVerticies();
                 lastAngle=angle_.get(oi);

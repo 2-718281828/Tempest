@@ -7,11 +7,11 @@ import renderer.Model;
 import src.main.MainRenderer;
 import util.Console;
 import static src.entity.Player.i;
-import static src.main.MainLogic.enemyCount;
+import static main.MainLogic.enemyCount;
 import static src.main.MainRenderer.*;
 
 public class Bullet1 extends Entity {
-    public ID id = ID.Bullet1;
+    public src.entity.ID id = src.entity.ID.Bullet1;
     MainRenderer renderer;
 
     public Bullet1(Model model, Vector3 position, EntityHandler entityHandler, MainRenderer renderer){

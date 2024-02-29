@@ -10,12 +10,12 @@ import util.Console;
 
 import java.util.*;
 import static src.main.Main.lives;
-import static src.main.MainLogic.enemyCount;
+import static main.MainLogic.enemyCount;
 import static src.main.MainRenderer.*;
 
 public class Player extends Entity {
 
-        public ID id = ID.Player;
+        public src.entity.ID id = src.entity.ID.Player;
         public double defaultAngle;
         public static boolean[] keys = new boolean[4];
         MainRenderer renderer;
