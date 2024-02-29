@@ -393,7 +393,6 @@ public class MainLogic implements Logic {
             //triangles = new Triangles();
             player.model.init(src.main.MainRenderer.triangles);
             isNewTunel = false;
-            enemyCount = (int) Math.round(16 * Math.exp(level / 69));
             if (level <= 2) {
                 ifl = (int) enemyCount;
             } else if (level ==4) {
