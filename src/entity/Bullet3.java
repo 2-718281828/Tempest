@@ -27,9 +27,11 @@ public class Bullet3 extends Entity {
     int lifetime=0;
     public void logic() {
         lifetime++;
+        updateHitbox();
         if (lifetime >= 60 * 0.1) {
             model.remove(renderer.triangles);
             entityHandler.entities.remove(this);
+
 
         }
     }

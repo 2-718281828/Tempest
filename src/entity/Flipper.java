@@ -47,12 +47,14 @@ public class Flipper extends Entity {
             velocity=new Vector3(0,0,0);
             t++;
 
-            if(g==15){
+            if(g==7){
                 hasImmunity=false;
-                model.color =Color.white;
+                model.setColor(Color.white);
+                model.updateVerticies();
             }
-            if(t%120==0){
-                model.color =Color.red;
+            if(t%60==0){
+                model.setColor(Color.gray);
+                model.updateVerticies();
                 hasImmunity=true;
                 g=0;
                 if(!isClosed1){
@@ -67,7 +69,7 @@ public class Flipper extends Entity {
                         h--;
 
 
-                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0.48));
                         model.rotate(2,angle_.get(h));
 
                     }
@@ -76,7 +78,7 @@ public class Flipper extends Entity {
                         h++;
 
 
-                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0.48));
                         model.rotate(2,angle_.get(h));
 
                     }
@@ -84,7 +86,7 @@ public class Flipper extends Entity {
                         model.rotate(2,2*Math.PI-angle_.get(h));
                         h++;
 
-                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0.48));
                         model.rotate(2,angle_.get(h));
 
                     }
@@ -92,7 +94,7 @@ public class Flipper extends Entity {
                         model.rotate(2,2*Math.PI-angle_.get(h));
                         h--;
 
-                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0.48));
                         model.rotate(2,angle_.get(h));
 
                     }
@@ -101,7 +103,7 @@ public class Flipper extends Entity {
                     position.y=tunelwy.get(h);
                     model.updateVerticies();
                 }
-                    else if(isClosed1==true){
+                    else if(isClosed1){
                         model.move(new Vector3(-position.x,-position.y,0));
                         //                  position.x*=-1;
 //position.y*=-1;
@@ -109,7 +111,7 @@ public class Flipper extends Entity {
 
                         //model.move(position);
 
-                        if(Math.abs(h-i)>=i) {
+                        if(h-i<tunelwx.size()-1-h+i) {
                             model.rotate(2,2*Math.PI-angle_.get(h));
                             if(h==0){
                                 h=tunelwx.size()-1;
@@ -121,23 +123,24 @@ public class Flipper extends Entity {
 
 
 
-                            model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                            model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0.48));
                             model.rotate(2,angle_.get(h));
 
                         }
-                        else if(Math.abs(h-i)<i) {
+
+                        else {
                             model.rotate(2,2*Math.PI-angle_.get(h));
-                            if(h==0){
-                                h=tunelwx.size()-1;
+                            if(h==tunelwx.size()-1){
+                                h=0;
                             }
                             else{
-                                h--;
+                                h++;
                             }
                            // model.rotate(2,2*Math.PI-angle_.get(h));
 
 
 
-                            model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
+                            model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0.48));
                             model.rotate(2,angle_.get(h));
 
                         }
@@ -153,6 +156,12 @@ public class Flipper extends Entity {
 
             }
 
+        }
+        else{
+            if(isClosed1){
+                velocity = new Vector3(0, 0, -0.22);}
+            if(!isClosed1){
+                velocity = new Vector3(0, 0, -0.4);}
         }
         model.updateVerticies();
         position.z+=velocity.z;

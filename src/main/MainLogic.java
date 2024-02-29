@@ -49,6 +49,7 @@ public class MainLogic implements Logic {
 
     public double t = 0;
     public int timeFlippers = 69;
+    public int timeTankers = 90;
     public int ifl = 0; //ilosc flippers
     public int it = 0;
     public int is = 0; //ilsoc spikers
@@ -59,7 +60,7 @@ public class MainLogic implements Logic {
     public int ois = 0;
     public int oifu = 0;
     public int M;
-
+    public int superZapper=0;
     static double d135 = 3 * (Math.PI / 4);
     static double d90 = Math.PI / 2;
     static double d45 = Math.PI / 4;
@@ -77,9 +78,16 @@ public class MainLogic implements Logic {
                 bullet1.model.init(((src.main.MainRenderer) camera.renderer).triangles);
             }
         }
+        if (Player.keys[1] &&superZapper!=0) {
+            superZapper--;
+            Bullet3 bullet3 = new Bullet3(LoadModel.loadModel(new File(classPath + "/monkey.model"), Color.black, camera.renderer, camera), new Vector3(tunelwx.get(i), tunelwy.get(i), 7.8), entityHandler, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+            entityHandler.entities.add(bullet3);
+            bullet3.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+        }
         camera.update();
         ((src.main.MainRenderer) camera.renderer).entityHandler.logic();
         if (isNewTunel) {
+            superZapper++;
 
             tunelwx.clear();
             tunelwy.clear();
@@ -417,6 +425,7 @@ public class MainLogic implements Logic {
 
         }
         timeFlippers--;
+        timeTankers--;
         if (oifl < ifl && timeFlippers == 0) {
             timeFlippers = 69 - random.nextInt(30);
             oifl++;
@@ -424,6 +433,14 @@ public class MainLogic implements Logic {
             Flipper flipper = new Flipper(LoadModel.loadModel(new File(classPath + "/enemy1.model"), Color.white, camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s), s, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
             entityHandler.entities.add(flipper);
             flipper.model.init(((src.main.MainRenderer) camera.renderer).triangles);
+        }
+        if (oit < it && timeTankers == 0) {
+            timeTankers = 90 - random.nextInt(30);
+            oit++;
+            int s = random.nextInt(M);
+            Tankers tanker = new Tankers(LoadModel.loadModel(new File(classPath + "/enemy1.model"), new Color(199, 38, 238, 255), camera.renderer, camera), new Vector3(tunelwx.get(s), tunelwy.get(s), 40), entityHandler, camera, angle_.get(s), s, ((src.main.MainRenderer) camera.renderer));//model, położenie, entityHandler
+            entityHandler.entities.add(tanker);
+            tanker.model.init(((src.main.MainRenderer) camera.renderer).triangles);
         }
     }
 }

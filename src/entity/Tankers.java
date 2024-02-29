@@ -43,117 +43,14 @@ public class Tankers extends Entity {
 
     public void logic() {
         g++;
-        if (position.z<8){
+        if (position.z<13){
             velocity=new Vector3(0,0,0);
             t++;
 
-            if(g==15){
-                hasImmunity=false;
-                model.color =Color.white;
-            }
-            if(t%120==0){
-                model.color =Color.red;
-                hasImmunity=true;
-                g=0;
-                if(!isClosed1){
-                    model.move(new Vector3(-position.x,-position.y,0));
-  //                  position.x*=-1;
-//position.y*=-1;
-                    position.z=0;
-
-                    //model.move(position);
-                    if(h>i && h!=0) {
-                        model.rotate(2,2*Math.PI-angle_.get(h));
-                        h--;
-
-
-                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
-                        model.rotate(2,angle_.get(h));
-
-                    }
-                    else if(h>i && h==0) {
-                        model.rotate(2,2*Math.PI-angle_.get(h));
-                        h++;
-
-
-                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
-                        model.rotate(2,angle_.get(h));
-
-                    }
-                    else if(h<i && h!=tunelwx.size()-1) {
-                        model.rotate(2,2*Math.PI-angle_.get(h));
-                        h++;
-
-                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
-                        model.rotate(2,angle_.get(h));
-
-                    }
-                    else if(h<i && h==tunelwx.size()-1) {
-                        model.rotate(2,2*Math.PI-angle_.get(h));
-                        h--;
-
-                        model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
-                        model.rotate(2,angle_.get(h));
-
-                    }
-
-                    position.x=tunelwx.get(h);
-                    position.y=tunelwy.get(h);
-                    model.updateVerticies();
-                }
-                    else if(isClosed1==true){
-                        model.move(new Vector3(-position.x,-position.y,0));
-                        //                  position.x*=-1;
-//position.y*=-1;
-                        position.z=0;
-
-                        //model.move(position);
-
-                        if(Math.abs(h-i)>=i) {
-                            model.rotate(2,2*Math.PI-angle_.get(h));
-                            if(h==0){
-                                h=tunelwx.size()-1;
-                            }
-                            else{
-                                h--;
-                            }
-
-
-
-
-                            model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
-                            model.rotate(2,angle_.get(h));
-
-                        }
-                        else if(Math.abs(h-i)<i) {
-                            model.rotate(2,2*Math.PI-angle_.get(h));
-                            if(h==0){
-                                h=tunelwx.size()-1;
-                            }
-                            else{
-                                h--;
-                            }
-                           // model.rotate(2,2*Math.PI-angle_.get(h));
-
-
-
-                            model.move(new Vector3(tunelwx.get(h),tunelwy.get(h),0));
-                            model.rotate(2,angle_.get(h));
-
-                        }
-
-
-                    position.x=tunelwx.get(h);
-                    position.y=tunelwy.get(h);
-                    //model.move(new Vector3(0.02*Math.sin(angle_.get(h)),0.02*Math.cos(angle_.get(h)),0));
-                    model.color = Color.red;
-                    model.updateVerticies();
-                    }
-
-
-            }
-
         }
+
+
+
         model.updateVerticies();
         position.z+=velocity.z;
         model.move(velocity);
