@@ -10,6 +10,7 @@ import src.main.MainRenderer;
 import util.Console;
 import java.util.Random;
 
+import static java.awt.Color.gray;
 import static src.entity.Player.i;
 import static src.main.Main.lives;
 import static src.main.MainRenderer.*;
@@ -18,6 +19,7 @@ public class Flipper extends Entity {
     public src.entity.ID id = src.entity.ID.Flipper;
     double t = 0;
     public int h;
+    public static boolean hasImmunity=false;
     Camera camera;
     MainRenderer renderer;
     public Flipper(Model model, Vector3 position, EntityHandler entityHandler, Camera camera, double angle,int s, MainRenderer mainrenderer) {
@@ -37,14 +39,21 @@ public class Flipper extends Entity {
 
     }
 
-
+    int g=0;
 
     public void logic() {
-
+        g++;
         if (position.z<8){
             velocity=new Vector3(0,0,0);
             t++;
+
+            if(g==10){
+                hasImmunity=false;
+            }
             if(t%120==0){
+                //model.color(gray);
+                hasImmunity=true;
+                g=0;
                 if(isClosed1==false){
                     model.move(new Vector3(-position.x,-position.y,0));
   //                  position.x*=-1;
@@ -98,7 +107,8 @@ public class Flipper extends Entity {
                         position.z=0;
 
                         //model.move(position);
-                        if(Math.abs(h-i)>Math.abs(i-h)) {
+
+                        if(Math.abs(h-i)>=i) {
                             model.rotate(2,2*Math.PI-angle_.get(h));
                             if(h==0){
                                 h=tunelwx.size()-1;
@@ -114,7 +124,7 @@ public class Flipper extends Entity {
                             model.rotate(2,angle_.get(h));
 
                         }
-                        else if(Math.abs(h-i)<=Math.abs(i-h)) {
+                        else if(Math.abs(h-i)<i) {
                             model.rotate(2,2*Math.PI-angle_.get(h));
                             if(h==0){
                                 h=tunelwx.size()-1;
@@ -134,6 +144,7 @@ public class Flipper extends Entity {
 
                     position.x=tunelwx.get(h);
                     position.y=tunelwy.get(h);
+                    //model.move(new Vector3(0.02*Math.sin(angle_.get(h)),0.02*Math.cos(angle_.get(h)),0));
                     model.updateVerticies();
                     }
 
@@ -159,9 +170,18 @@ public class Flipper extends Entity {
                         enemyCount--;
                         //Console.log(enemyCount);
                     }
-                    else if(entityHandler.entities.get(i).getClass()== src.entity.Player.class) {
+                    else if(entityHandler.entities.get(i).getClass()== src.entity.Player.class && !hasImmunity) {
                         lives--;
                         Console.log(lives);
+                        //entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
+                        //entityHandler.entities.remove(entityHandler.entities.get(i));
+                        model.remove(((MainRenderer)camera.renderer).triangles);
+                        entityHandler.entities.remove(this);
+                        enemyCount--;
+                        //Console.log(enemyCount);
+                    }
+                    else if(entityHandler.entities.get(i).getClass()== entity.Bullet3.class) {
+
                         //entityHandler.entities.get(i).model.remove(((MainRenderer)camera.renderer).triangles);
                         //entityHandler.entities.remove(entityHandler.entities.get(i));
                         model.remove(((MainRenderer)camera.renderer).triangles);

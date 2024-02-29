@@ -40,10 +40,10 @@ public class Rectangle2 extends Entity {
 
         public void logic (){
                 t++;
-                Console.log("ilosc");
-                Console.log(enemyCount);
+                //Console.log("ilosc");
+                //Console.log(enemyCount);
                 if(enemyCount==0 || oi>tunelwx.size()-1){
-                    Console.log("SEX");
+                    //Console.log("SEX");
                     entityHandler.entities.remove(this);
                     model.remove(MainRenderer.triangles);
                 }
