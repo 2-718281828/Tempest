@@ -129,17 +129,17 @@ public class MainLogic implements Logic {
 
 
             } else if (whichTunel == 2) {
-                double N = 8;
+                double N = 14;
                 M= (int)N;
                 //boolean isClosed1=true;
                 for (double d = 0; d < N; d++) {
-                    tunelwx.add((-3 + d / Math.sqrt(2))/*1/Math.sin(Math.PI/4)*/);
+                    tunelwx.add((-7/Math.sqrt(2)+ d / Math.sqrt(2))/*1/Math.sin(Math.PI/4)*/);
                     tunelwy.add(-2.0 + 1 / Math.cos(Math.PI / 4));
                     angle_.add(Math.PI * Math.pow((-1), d) / 4);
 
                     Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
                             new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
-                            new Vector3((((-3 + d / Math.sqrt(2)))), -2.0 + 1 / Math.cos(Math.PI / 4), 30), entityHandler, Math.PI * Math.pow((-1), d) / 4, N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+                            new Vector3((((-7/Math.sqrt(2) + d / Math.sqrt(2)))), -2.0 + 1 / Math.cos(Math.PI / 4), 30), entityHandler, Math.PI * Math.pow((-1), d) / 4, N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
                     entityHandler.entities.add(rectangle);
                     rectangle.model.init(((MainRenderer) camera.renderer).triangles);
                 }
@@ -259,6 +259,58 @@ public class MainLogic implements Logic {
                 double[] x = {0.5,1.5,2.5,3.5,4.0,3.5,2.5,1.5,0.5,-0.5,-1.5,-2.5,-3.5,-4.0,-3.5,-2.5,-1.5,-0.5};
                 double[] y = {1.0,1.5,1.5,1.0,0.0,-1.0,-1.5,-1.5,-1.0,-1.0,-1.5,-1.5,-1.0,-0.0,1.0,1.5,1.5,1.0};
                 double[] angle = {d135,d90,d90,d45,d0,d135,d90,d90,d45,d135,d90,d90,d45,d0,d135,d90,d90,d45};
+                for(int l = 0; l<N; l++)
+                {
+                    tunelwx.add(x[l]);
+                    tunelwy.add(y[l]);
+                    angle_.add(angle[l]);
+                }
+                for (double d = 0; d < N; d++) {
+
+                    for (int q = 0; q < N; q++) {
+                        Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
+                                new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+
+                        entityHandler.entities.add(rectangle);
+                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                    }
+                    isClosed1 = true;
+                }
+            }
+            else if (whichTunel == 6) //Szósty tunel
+            {
+                double N = 18;
+                M= (int)N;
+                double[] x = {0.5,1.5,2.5,3.5,4.0,3.5,2.5,1.5,0.5,-0.5,-1.5,-2.5,-3.5,-4.0,-3.5,-2.5,-1.5,-0.5};
+                double[] y = {1.5,1.5,1.5,1.0,0.0,-1.0,-1.5,-1.5,-1.5,-1.5,-1.5,-1.5,-1.0,-0.0,1.0,1.5,1.5,1.5};
+                double[] angle = {d90,d90,d90,d45,d0,d135,d90,d90,d90,d90,d90,d90,d45,d0,d135,d90,d90,d90};
+                for(int l = 0; l<N; l++)
+                {
+                    tunelwx.add(x[l]);
+                    tunelwy.add(y[l]);
+                    angle_.add(angle[l]);
+                }
+                for (double d = 0; d < N; d++) {
+
+                    for (int q = 0; q < N; q++) {
+                        Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
+                                new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+
+                        entityHandler.entities.add(rectangle);
+                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                    }
+                    isClosed1 = true;
+                }
+            }
+            else if (whichTunel == 6) //Szósty tunel
+            {
+                double N = 18;
+                M= (int)N;
+                double[] x = {0.5,1.5,2.5,3.5,4.0,3.5,2.5,1.5,0.5,-0.5,-1.5,-2.5,-3.5,-4.0,-3.5,-2.5,-1.5,-0.5};
+                double[] y = {1.5,1.5,1.5,1.0,0.0,-1.0,-1.5,-1.5,-1.5,-1.5,-1.5,-1.5,-1.0,-0.0,1.0,1.5,1.5,1.5};
+                double[] angle = {d90,d90,d90,d45,d0,d135,d90,d90,d90,d90,d90,d90,d45,d0,d135,d90,d90,d90};
                 for(int l = 0; l<N; l++)
                 {
                     tunelwx.add(x[l]);

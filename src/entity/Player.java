@@ -45,7 +45,7 @@ public class Player extends Entity {
 
         public static int i =0;
         public void logic () {
-            if (t%3==0){
+            if (t%4==0){
                 //niech ten komentarz będzie przestrogą dla przyszlych programistów: Ilość spędzonych godzin na probie zrobienia dzialajacego obrtacania: 2 DZIAŁA DZIALA DZIALA DZIAL DZIALA DZIALA DZIAL DZIALA DZIALA DZIAL DZIALA DZIALA DIALA
             if(keys[2]) {
 

@@ -25,9 +25,9 @@ public class Flipper extends Entity {
         h = s;
         this.renderer=renderer;
         if(isClosed1){
-        velocity = new Vector3(0, 0, -0.16);}
+        velocity = new Vector3(0, 0, -0.22);}
         if(!isClosed1){
-        velocity = new Vector3(0, 0, -0.32);}
+        velocity = new Vector3(0, 0, -0.4);}
         //model.rotate(0,Math.PI/2);
         model.rotate(2,angle-Math.PI/2);
         //model.rotate(0,Math.PI/2);
