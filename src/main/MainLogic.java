@@ -58,6 +58,11 @@ public class MainLogic implements Logic {
     public int ois = 0;
     public int oifu = 0;
     public int M;
+
+    static double d135 = 3*(Math.PI/4);
+    static double d90 = Math.PI/2;
+    static double d45 = Math.PI/4;
+    static double d0 = 0.0;
     public void update() {
         if (whichTunel == 16) {
             whichTunel = 0; //16 tuneli
@@ -80,7 +85,8 @@ public class MainLogic implements Logic {
             level++;
             //enemyCount=1;
             enemyCount = (int) Math.round(16 * Math.exp(level / 69));
-            if (whichTunel ==0) {
+            if (whichTunel ==0)
+            {
                 double N = 14;
                 M= (int) N;
                 //boolean isClosed1=true;
@@ -226,11 +232,34 @@ public class MainLogic implements Logic {
                 M= (int)N;
                 double[] x = {0.0,0.5,1.0,1.5,2.0,2.5,2.0,1.5,1.0,0.5,0.0,-0.5,-1,-1.5,-2.0,-2.5,-2,-1.5,-1,-0.5};
                 double[] y = {0.5,1.0,1.5,1.0,0.5,0.0,-0.5,-1.0,-1.5,-1.0,-0.5,-1.0,-1.5,-1.0,-0.5,0.0,0.5,1.0,1.5,1.0};
-
-                double d90 = Math.PI/2;
-                double d0 = 0.0;
                 double[] angle = {d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0,d90,d0};
-                for(int l = 0; l<20; l++)
+                for(int l = 0; l<N; l++)
+                {
+                    tunelwx.add(x[l]);
+                    tunelwy.add(y[l]);
+                    angle_.add(angle[l]);
+                }
+                for (double d = 0; d < N; d++) {
+
+                    for (int q = 0; q < N; q++) {
+                        Rectangle rectangle = (new Rectangle(LoadModel.loadModel(
+                                new File(classPath + "/tunel2.model"), new Color(26, 53, 183), camera.renderer, camera),
+                                new Vector3(tunelwx.get(q), tunelwy.get(q), 30), entityHandler, angle_.get(q), N, ((MainRenderer) camera.renderer)));//model, położenie, entityHandler
+
+                        entityHandler.entities.add(rectangle);
+                        rectangle.model.init(((MainRenderer) camera.renderer).triangles);
+                    }
+                    isClosed1 = true;
+                }
+            }
+            else if (whichTunel == 5) //Piąty tunel
+            {
+                double N = 18;
+                M= (int)N;
+                double[] x = {0.5,1.5,2.5,3.5,4.0,3.5,2.5,1.5,0.5,-0.5,-1.5,-2.5,-3.5,-4.0,-3.5,-2.5,-1.5,-0.5};
+                double[] y = {1.0,1.5,1.5,1.0,0.0,-1.0,-1.5,-1.5,-1.0,-1.0,-1.5,-1.5,-1.0,-0.0,1.0,1.5,1.5,1.0};
+                double[] angle = {d135,d90,d90,d45,d0,d135,d90,d90,d45,d135,d90,d90,d45,d0,d135,d90,d90,d45};
+                for(int l = 0; l<N; l++)
                 {
                     tunelwx.add(x[l]);
                     tunelwy.add(y[l]);
