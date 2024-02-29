@@ -1,4 +1,4 @@
-package src.main;
+package main;
 
 import src.entity.Player;
 import util.Console;

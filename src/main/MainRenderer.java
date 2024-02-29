@@ -1,4 +1,4 @@
-package src.main;
+package main;
 
 import entity.EntityHandler;
 import maths.*;

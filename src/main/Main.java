@@ -1,4 +1,4 @@
-package src.main;
+package main;
 
 import engine.Engine;
 import entity.EntityHandler;
